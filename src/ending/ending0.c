@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:59:35 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/18 18:04:29 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:15:44 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ void	ft_error(t_game *game, char *str)
 	end(game);
 }
 
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	if (map->split_path != NULL)
+	{
+		while (map->split_path[i])
+		{
+			free(map->split_path[i]);
+			i++;
+		}
+		free(map->split_path);
+	}
+}
+
 void	end(t_game *game)
 {
 	if (game->win != NULL)
@@ -27,5 +43,6 @@ void	end(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+	free_map(&game->map);
 	exit(0);
 }

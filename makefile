@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/18 04:03:43 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/18 17:59:43 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,18 @@ MFLAGS	=	-lX11 -lXext
 INC		=	-I./includes
 
 # Directories
-VPATH   =   src/ src/parsing src/keyboard src/ending
+VPATH   =   src/ src/parsing src/keyboard src/ending src/init
 OBJ_DIR	=	obj/
 LIB_DIR	=	libft/
 MLX_DIR	=	minilibx-linux/
 
 # .c and .o files
 PARSING		=	parsing0.c
+INIT		=	init0.c
 KEYBOARD	=	keyboard0.c
 ENDING		=	ending0.c	
 SRC			=	$(PARSING)	\
+				$(INIT)		\
 				$(KEYBOARD)	\
 				$(ENDING)	\
 				main.c

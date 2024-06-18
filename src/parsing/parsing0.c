@@ -6,13 +6,13 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:26:49 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/18 02:44:53 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/18 04:11:08 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	tester()
+void	tester(void)
 {
 	ft_printf("Hello world!\n");
 }

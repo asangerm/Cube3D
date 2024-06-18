@@ -6,13 +6,13 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:38:47 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/18 04:00:26 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/18 04:12:46 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int	main()
+int	main(void)
 {
 	t_game	game;
 
@@ -24,7 +24,7 @@ int	main()
 	if (!game.win)
 		return (0);
 	tester();
-	mlx_hook(game.win, CLOSE_BUTTON, close_window, &game);
+	mlx_hook(game.win, 17, 1L << 17, close_window, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

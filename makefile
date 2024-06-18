@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/18 03:29:12 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/18 04:03:43 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,20 @@ MFLAGS	=	-lX11 -lXext
 INC		=	-I./includes
 
 # Directories
-VPATH   =   src/ src/parsing
+VPATH   =   src/ src/parsing src/keyboard src/ending
 OBJ_DIR	=	obj/
 LIB_DIR	=	libft/
 MLX_DIR	=	minilibx-linux/
 
 # .c and .o files
-PARSING	 =  parsing0.c
-SRC		 =	$(PARSING)	\
-			main.c
-OBJ		 =	$(SRC:%.c=$(OBJ_DIR)%.o)
+PARSING		=	parsing0.c
+KEYBOARD	=	keyboard0.c
+ENDING		=	ending0.c	
+SRC			=	$(PARSING)	\
+				$(KEYBOARD)	\
+				$(ENDING)	\
+				main.c
+OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)
 
 # .a files
 LIBFT	=	$(LIB_DIR)libft.a
@@ -44,13 +48,13 @@ BLUE	=	\033[0;34m
 RESET	=	\033[0m
 
 # ASCII art
-ASCII_ART	= "$(BLUE)   ___      _            _____   ___\n  / __\   _| |__   ___  |___ /  /   \ \n / / | | | | '_ \ / _ \   |_ \ / /\ /\n/ /__| |_| | |_) |  __/  ___) / /_//\n\____/\__,_|_.__/ \___| |____/___,'\n       by asangerm and nfradet$(RESET)\n"
+ASCII_ART	=	"$(BLUE)   ___      _            _____   ___\n  / __\   _| |__   ___  |___ /  /   \ \n / / | | | | '_ \ / _ \   |_ \ / /\ /\n/ /__| |_| | |_) |  __/  ___) / /_//\n\____/\__,_|_.__/ \___| |____/___,'\n       by asangerm and nfradet$(RESET)\n"
 
 # The main rule
-all				:	ascii_art $(NAME)
+all			:	ascii_art $(NAME)
 
 # ASCII Art at the beginning
-ascii_art:
+ascii_art		:
 	@echo $(ASCII_ART)
 
 # The name rule

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:38:33 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 14:52:07 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:34:11 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	check_path(t_game *game, char *path)
 		free_tab(split_path);
 		ft_error(game, INVALID_TEXT);
 	}
+	free_tab(split_path);
 	close(fd);
 }
 

@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/18 17:59:43 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/19 04:38:04 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,11 @@ LIB_DIR	=	libft/
 MLX_DIR	=	minilibx-linux/
 
 # .c and .o files
-PARSING		=	parsing0.c
+PARSING		=	parsing.c		\
+				parsing_utils.c	\
+				map.c			\
+				colors.c		\
+				textures.c
 INIT		=	init0.c
 KEYBOARD	=	keyboard0.c
 ENDING		=	ending0.c	

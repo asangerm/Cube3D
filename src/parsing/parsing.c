@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:26:49 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 04:41:25 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:09:26 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	parsing(t_game *game, int argc, char **argv)
 	arg_checker(game, argc, argv);
 	map_extractor(game);
 	get_data(game);
+	data_checker(game);
+	/*
 	printf("%s\n", game->map.map_info.no_path);
 	printf("%s\n", game->map.map_info.so_path);
 	printf("%s\n", game->map.map_info.ea_path);
@@ -86,4 +88,5 @@ void	parsing(t_game *game, int argc, char **argv)
 	print_int_star(game->map.map_info.c_color);
 	print_int_star(game->map.map_info.f_color);
 	print_tab(game->map.real_map);
+	*/
 }

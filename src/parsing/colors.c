@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:36:02 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 04:36:16 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:07:20 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,28 @@ void	get_color(t_game *game, t_info *info, char *line, int j)
 		info->f_color = set_color(game, line + j + 1);
 	else
 		ft_error(game, INVALID_COLOR);
+}
+
+void	color_checker(t_game *game)
+{
+	int	i;
+	int	*c;
+	int	*f;
+
+	i = 0;
+	c = game->map.map_info.c_color;
+	f = game->map.map_info.f_color;
+	while (i < 3)
+	{
+		if (c[i] < 0 || c[i] > 255)
+			ft_error(game, INVALID_COLOR);
+		i++;
+	}
+	i = 0;
+	while (i < 3)
+	{
+		if (f[i] < 0 || f[i] > 255)
+			ft_error(game, INVALID_COLOR);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 04:40:40 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:13:35 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,15 @@ void	create_map(t_game *game, char **map, int i);
 void	set_map(t_game *game, t_map *m, char **map, int w);
 
 /* colors.c */
+void	color_checker(t_game *game);
 int		*set_color(t_game *game, char *line);
 int		*color_convert(t_game *game, char **colors, int *c);
 void	get_color(t_game *game, t_info *info, char *line, int j);
 
 /* textures.c */
+void	data_checker(t_game *game);
 char	*get_path(char *line, int j);
+void	texture_checker(t_game *game);
 void	get_textures(t_game *game, t_info *info, char *line, int j);
 
 /* parsing_utils.c */

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 14:13:35 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:44:21 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	get_color(t_game *game, t_info *info, char *line, int j);
 void	data_checker(t_game *game);
 char	*get_path(char *line, int j);
 void	texture_checker(t_game *game);
+void	check_path(t_game *game, char *path);
 void	get_textures(t_game *game, t_info *info, char *line, int j);
 
 /* parsing_utils.c */

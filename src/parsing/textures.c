@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:38:33 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 14:19:27 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:52:07 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,31 @@ void	get_textures(t_game *game, t_info *info, char *line, int j)
 		ft_error(game, INVALID_TEXT);
 }
 
+void	check_path(t_game *game, char *path)
+{
+	char	**split_path;
+	int		fd;
+
+	split_path = ft_split(path, '.');
+	if (split_len(split_path) != 2)
+	{
+		free_tab(split_path);
+		ft_error(game, INVALID_TEXT);
+	}
+	if (ft_strncmp("xpm", split_path[1], 4) != 0)
+	{
+		free_tab(split_path);
+		ft_error(game, INVALID_TEXT);
+	}
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		free_tab(split_path);
+		ft_error(game, INVALID_TEXT);
+	}
+	close(fd);
+}
+
 void	texture_checker(t_game *game)
 {
 	t_info	info;
@@ -65,7 +90,10 @@ void	texture_checker(t_game *game)
 		ft_error(game, INVALID_TEXT);
 	if (!info.c_color || !info.f_color)
 		ft_error(game, INVALID_COLOR);
-	//check les path des textures
+	check_path(game, info.ea_path);
+	check_path(game, info.no_path);
+	check_path(game, info.so_path);
+	check_path(game, info.we_path);
 }
 
 void	data_checker(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:28:47 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/20 19:59:10 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/20 21:19:53 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,5 @@ int	get_height(t_game *game, char **map, int i)
 		i++;
 	}
 	game->map.end_map = i;
-	printf("%d\n", i);
 	return (i - index);
 }

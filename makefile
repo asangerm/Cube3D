@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/20 20:08:55 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/20 20:58:45 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ MLX_DIR	=	minilibx-linux/
 PARSING		=	parsing.c		\
 				parsing_utils.c	\
 				map.c			\
+				map_checker.c	\
+				map_checker_2.c	\
 				colors.c		\
 				textures.c
 INIT		=	init.c

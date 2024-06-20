@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:32:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 04:45:34 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/20 23:59:28 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,5 @@ void	enhance_map(t_game *game)
 void	create_map(t_game *game, char **map, int i)
 {
 	get_map(game, map, i);
-	enhance_map(game);
+	//enhance_map(game);
 }

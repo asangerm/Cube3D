@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init0.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 03:58:14 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:32:09 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,17 @@ void	init_map(t_map *map)
 	init_info(&map->map_info);
 }
 
+void	init_player(t_player *player)
+{
+	player->face_to = '0';
+	player->x = 0;
+	player->y = 0;
+}
+
 void	init(t_game *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
 	init_map(&game->map);
+	init_player(&game->player);
 }

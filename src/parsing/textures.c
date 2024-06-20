@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:38:33 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 18:34:11 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:53:02 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ void	data_checker(t_game *game)
 {
 	texture_checker(game);
 	color_checker(game);
-	//map_checker(game);
+	map_checker(game);
 }

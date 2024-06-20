@@ -1,6 +1,10 @@
 {
 	"files.associations": {
 		"mlx.h": "c",
-		"cube3d.h": "c"
+		"cube3d.h": "c",
+		"map_checker.C": "cpp",
+		"array": "cpp",
+		"string": "cpp",
+		"string_view": "cpp"
 	}
 }

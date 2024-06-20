@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/19 04:38:04 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/20 20:08:55 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ PARSING		=	parsing.c		\
 				map.c			\
 				colors.c		\
 				textures.c
-INIT		=	init0.c
-KEYBOARD	=	keyboard0.c
-ENDING		=	ending0.c	
+INIT		=	init.c
+KEYBOARD	=	keyboard.c
+ENDING		=	ending.c	
 SRC			=	$(PARSING)	\
 				$(INIT)		\
 				$(KEYBOARD)	\

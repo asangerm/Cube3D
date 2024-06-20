@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 14:44:21 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:08:47 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ typedef struct s_game
 	t_map	map;
 }		t_game;
 
-/* init0.c */
+/* init.c */
 void	init(t_game *game);
 void	init_map(t_map *map);
 
-/* ending0.c */
+/* ending.c */
 void	end(t_game *game);
 void	free_tab(char **tab);
 void	free_map(t_map *map);
 void	ft_error(t_game *game, char *str);
 
-/* keyboard0.c */
+/* keyboard.c */
 int		close_window(t_game *game);
 int		key_hook(int keybind, t_game *game);
 

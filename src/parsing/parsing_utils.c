@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:28:47 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 18:28:47 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:02:06 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,25 @@ void	print_int_star(int *tab)
 int	no_digit(char *str)
 {
 	int	i;
+	int	valid;
 
 	i = 0;
+	valid = 0;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
+	if (!str[i])
+		return (1);
 	while (str[i])
 	{
+		if (ft_isdigit(str[i]))
+			valid = 1;
 		if (str[i + 1] == '\0' && str[i] == '\n')
-			return (0);
+		{
+			if (valid == 1)
+				return (0);
+			else
+				return (1);
+		}
 		if (!ft_isdigit(str[i]))
 			return (1);
 		i++;

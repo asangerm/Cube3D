@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/21 00:15:47 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:56:54 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 # define K_RIGHT 100
 # define K_ECHAP 65307
 
-# define ERROR_ RED ERROR_EMOJI " ERROR " ERROR_EMOJI "\n" RESET
-# define TOO_FEW_ARG ERROR_ YELLOW "Too few arguments!" RESET
-# define TOO_MUCH_ARG ERROR_ YELLOW "Too much arguments!" RESET
-# define WRONG_EXT ERROR_ YELLOW "Extension of file is incorrect" RESET
-# define CANT_OPEN ERROR_ YELLOW "We can't open the given file" RESET
-# define INVALID_TEXT ERROR_ YELLOW "Invalid texture in file "RESET
-# define INVALID_COLOR ERROR_ YELLOW "Invalid color in file" RESET
-# define INVALID_MAP ERROR_ YELLOW "Invalid map in file" RESET
+# define ERROR_ "ERROR"
+# define TOO_FEW_ARG "Too few arguments!"
+# define TOO_MUCH_ARG "Too much arguments!"
+# define WRONG_EXT "Extension of file is incorrect"
+# define CANT_OPEN "We can't open the given file"
+# define INVALID_TEXT "Invalid texture in file "
+# define INVALID_COLOR "Invalid color in file"
+# define INVALID_MAP "Invalid map in file"
 
 typedef struct s_info
 {
@@ -104,10 +104,8 @@ int		get_info(t_game *game, char **map, int i, int j);
 void	arg_checker(t_game *game, int argc, char **argv);
 
 /* map.c */
-void	enhance_map(t_game *game);
 void	map_extractor(t_game *game);
 void	get_map(t_game *game, char **map, int i);
-void	create_map(t_game *game, char **map, int i);
 void	set_map(t_game *game, t_map *m, char **map, int w);
 
 /* map_checker.c */

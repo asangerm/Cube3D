@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ending0.c                                          :+:      :+:    :+:   */
+/*   ending.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:59:35 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/19 03:44:19 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:53:42 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_error(t_game *game, char *str)
 {
-	printf("%s\n", str);
+	printf("%s%s %s %s%s\n", RED, ERROR_EMOJI, ERROR_, ERROR_EMOJI, RESET);
+	printf("%s%s%s\n", YELLOW, str, RESET);
 	end(game);
 }
 

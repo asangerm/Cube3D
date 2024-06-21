@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:32:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/20 23:59:28 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:56:30 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,35 +74,4 @@ void	get_map(t_game *game, char **map, int i)
 	if (!game->map.real_map)
 		ft_error(game, INVALID_MAP);
 	set_map(game, &game->map, game->map.real_map, i);
-}
-
-void	enhance_map(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map.real_map[i])
-	{
-		j = 0;
-		while (game->map.real_map[i][j] == ' ' ||
-		game->map.real_map[i][j] == '\t' || game->map.real_map[i][j] == '\r'
-		|| game->map.real_map[i][j] == '\v' || game->map.real_map[i][j] == '\f')
-			j++;
-		while (game->map.real_map[i][j])
-		{
-			if (game->map.real_map[i][j] == ' '
-				&& j
-				!= game->map.real_map[i][ft_strlen(game->map.real_map[i]) - 1])
-				game->map.real_map[i][j] = '1';
-			j++;
-		}
-		i++;
-	}
-}
-
-void	create_map(t_game *game, char **map, int i)
-{
-	get_map(game, map, i);
-	//enhance_map(game);
 }

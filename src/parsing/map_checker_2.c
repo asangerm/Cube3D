@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 20:58:12 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/21 00:16:21 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:57:23 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_middle(t_game *game, int i, int j)
 			if (ft_strchr("NSEW0", map[i][j]) != NULL)
 			{
 				if (i == 0 || i == game->map.height - 1 || j == 0
-				|| j == (int)ft_strlen(map[i]) - 1)
+					|| j == (int)ft_strlen(map[i]) - 1)
 					check_border(game, game->map.real_map, i, j);
 				else
 					check_center(game, game->map.real_map, i, j);

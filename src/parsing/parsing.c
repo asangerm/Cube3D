@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:26:49 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/20 20:44:54 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:56:37 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	get_info(t_game *game, char **map, int i, int j)
 	}
 	else if (ft_isdigit(map[i][j]))
 	{
-		create_map(game, map, i);
+		get_map(game, map, i);
 		return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 20:10:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/21 00:16:04 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:36:45 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ void	check_char(t_game *game, char **map)
 			while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\r'
 			|| map[i][j] == '\v' || map[i][j] == '\f')
 				j++;
-			if (!(ft_strchr("10NSEW", map[i][j])))
-				ft_error(game, INVALID_MAP);
-			if (ft_strchr("NSEW", map[i][j]) && game->player.face_to != '0')
-				ft_error(game, INVALID_MAP);
-			if (ft_strchr("NSEW", map[i][j]) && game->player.face_to == '0')
-				game->player.face_to = map[i][j];
-			j++;
+			if (map[i][j])
+			{
+				if (!(ft_strchr("10NSEW", map[i][j])))
+					ft_error(game, INVALID_MAP);
+				if (ft_strchr("NSEW", map[i][j]) && game->player.face_to != '0')
+					ft_error(game, INVALID_MAP);
+				if (ft_strchr("NSEW", map[i][j]) && game->player.face_to == '0')
+					game->player.face_to = map[i][j];
+				j++;
+			}
 		}
 		i++;
 	}

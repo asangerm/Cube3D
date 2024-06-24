@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/23 22:12:21 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/24 13:08:30 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ PARSING		=	parsing.c		\
 				map_checker_2.c	\
 				colors.c		\
 				textures.c
-DISPLAY		=	image.c
+DISPLAY		=	test.c			\
+				test_utils.c
 INIT		=	init.c
 KEYBOARD	=	keyboard.c
 ENDING		=	ending.c	

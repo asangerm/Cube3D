@@ -5,6 +5,7 @@
 		"map_checker.C": "cpp",
 		"array": "cpp",
 		"string": "cpp",
-		"string_view": "cpp"
+		"string_view": "cpp",
+		"test_utils.C": "cpp"
 	}
 }

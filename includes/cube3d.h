@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/24 01:54:17 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:11:03 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,15 @@ typedef struct s_game
 	t_player	player;
 }		t_game;
 
-/* image.c */
+/* test.c */
 void	draw_map(t_game *game, int i, int j);
+void	draw_square(t_game *game, int x, int y, int color);
+void	init_text(t_game *game, t_map map, int tile_size);
+void	print_image(int **text, t_game *game, int tile_size);
+
+/* test_utils.c */
+void	free_star(int **tab, int h);
+void	set_pixel(t_image *image, int y, int x, int color);
 
 /* init.c */
 void	init(t_game *game);

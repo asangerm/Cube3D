@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:11:14 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/24 02:07:28 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:13:10 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
-
-void	set_pixel(t_image *image, int y, int x, int color)
-{
-	int	p;
-
-	p = y * (image->size_line / 4) + x;
-	image->data[p] = color;
-}
 
 void	draw_square(t_game *game, int x, int y, int color)
 {
@@ -77,22 +69,6 @@ void	print_image(int **text, t_game *game, int tile_size)
 	}
 	mlx_put_image_to_window(game->mlx, game->win, image.img, 0, 0);
 	mlx_destroy_image(game->mlx, image.img);
-}
-
-void	free_star(int **tab, int h)
-{
-	int	i;
-
-	i = 0;
-	if (tab != NULL)
-	{
-		while (i < h)
-		{
-			free(tab[i]);
-			i++;
-		}
-		free(tab);
-	}
 }
 
 void	draw_map(t_game *game, int i, int j)

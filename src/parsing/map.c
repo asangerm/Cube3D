@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:32:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/21 15:56:30 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/24 01:36:02 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	set_map(t_game *game, t_map *m, char **map, int w)
 			map[i][j] = m->tab[w][j];
 			j++;
 		}
-		while (j < m->width)
+		while (j < m->width + 1)
 			map[i][j++] = '\0';
 		i++;
 		w++;

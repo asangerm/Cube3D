@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/21 15:56:54 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/24 01:54:17 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,29 @@ typedef struct s_map
 	int			end_map;
 }		t_map;
 
+typedef struct s_image
+{
+	void	*img;
+	int		height;
+	int		width;
+	int		*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}		t_image;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	int			**text;//test
+	int			tile_size;//test
 	t_map		map;
 	t_player	player;
 }		t_game;
+
+/* image.c */
+void	draw_map(t_game *game, int i, int j);
 
 /* init.c */
 void	init(t_game *game);

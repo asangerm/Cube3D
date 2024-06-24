@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:28:47 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/20 21:19:53 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/24 01:27:17 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,16 @@ int	get_width(t_map *map, int i)
 	int	len;
 
 	len = ft_strlen(map->tab[i]);
+	if (map->tab[i][len - 1] == '\n')
+		len--;
 	while (map->tab[i])
 	{
 		if ((int)ft_strlen(map->tab[i]) > len)
+		{
 			len = ft_strlen(map->tab[i]);
+			if (map->tab[i][len - 1] == '\n')
+				len--;
+		}
 		i++;
 	}
 	return (len);

@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/20 20:58:45 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/23 22:12:21 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ MFLAGS	=	-lX11 -lXext
 INC		=	-I./includes
 
 # Directories
-VPATH   =   src/ src/parsing src/keyboard src/ending src/init
+VPATH   =   src/ src/parsing src/keyboard src/ending src/init src/display
 OBJ_DIR	=	obj/
 LIB_DIR	=	libft/
 MLX_DIR	=	minilibx-linux/
@@ -34,12 +34,14 @@ PARSING		=	parsing.c		\
 				map_checker_2.c	\
 				colors.c		\
 				textures.c
+DISPLAY		=	image.c
 INIT		=	init.c
 KEYBOARD	=	keyboard.c
 ENDING		=	ending.c	
 SRC			=	$(PARSING)	\
 				$(INIT)		\
 				$(KEYBOARD)	\
+				$(DISPLAY)	\
 				$(ENDING)	\
 				main.c
 OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)

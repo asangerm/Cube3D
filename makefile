@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/24 13:08:30 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/24 16:46:05 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ MFLAGS	=	-lX11 -lXext
 INC		=	-I./includes
 
 # Directories
-VPATH   =   src/ src/parsing src/keyboard src/ending src/init src/display
+VPATH   =   src/ src/parsing src/keyboard src/ending src/init	\
+			src/display src/player
 OBJ_DIR	=	obj/
 LIB_DIR	=	libft/
 MLX_DIR	=	minilibx-linux/
@@ -35,14 +36,17 @@ PARSING		=	parsing.c		\
 				colors.c		\
 				textures.c
 DISPLAY		=	test.c			\
-				test_utils.c
+				test_utils.c	\
+				raycasting.c
 INIT		=	init.c
+PLAYER		=	player.c
 KEYBOARD	=	keyboard.c
 ENDING		=	ending.c	
 SRC			=	$(PARSING)	\
 				$(INIT)		\
 				$(KEYBOARD)	\
 				$(DISPLAY)	\
+				$(PLAYER)	\
 				$(ENDING)	\
 				main.c
 OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)
@@ -71,7 +75,7 @@ ascii_art		:
 # The name rule
 $(NAME)			:	$(OBJ_DIR) $(OBJ) $(LIBFT) $(MLX)
 	@echo "$(YELLOW)Compiling the whole project -> ⏳$(RESET)"
-	@$(CC) $(OBJ) $(LIBFT) $(MLX) $(MFLAGS) -o $@
+	@$(CC) $(OBJ) $(LIBFT) $(MLX) $(MFLAGS) -lm -o $@
 	@echo "$(GREEN)Project successfuly compiled -> ✅$(RESET)\n"
 
 # The libft rule

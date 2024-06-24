@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 20:10:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/21 16:36:45 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:08:32 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	check_player(t_game *game, char **map)
 		{
 			if (ft_strchr("NSEW", map[i][j]))
 			{
-				game->player.x = j;
-				game->player.y = i;
+				game->player.x = j + 0.5;
+				game->player.y = i + 0.5;
 			}
 			j++;
 		}

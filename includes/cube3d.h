@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/24 13:11:03 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:43:00 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define RED "\033[0;31m"
 # define YELLOW	"\033[0;33m"
@@ -26,12 +27,16 @@
 # define ERROR_EMOJI "\U000026D4"
 
 # define WINDOW_NAME "Cube 3D"
+# define WINDOW_WIDTH 640
+# define WINDOW_HEIGHT 480
 
 # define K_UP 119
 # define K_DOWN 115
 # define K_LEFT 97
 # define K_RIGHT 100
 # define K_ECHAP 65307
+# define K_RIGHT_ARROW 65363
+# define K_LEFT_ARROW 65361
 
 # define ERROR_ "ERROR"
 # define TOO_FEW_ARG "Too few arguments!"
@@ -55,9 +60,33 @@ typedef struct s_info
 typedef struct s_player
 {
 	char		face_to;
-	int			x;
-	int			y;
+	double			dirX;//Vecteur direction player
+	double			dirY;
+	double			x;//Position du player
+	double			y;
+	double			planeX;//Vecteur direction camera
+	double			planeY;
 }		t_player;
+
+typedef struct s_ray
+{
+	double	cameraX;//Valeur allant de -1 à 1 pour parcourir les ray
+	double	dirX;//Vecteur direction du ray
+	double	dirY;
+	int		mapX;//Position de la case où se trouve le ray
+	int		mapY;
+	double	deltaX;//Distance entre deux inter avec x
+	double	deltaY;//Distance entre deux inter avec y
+	int		stepX;//Pas indiquant vers où l'on vas
+	int		stepY;
+	double	sideX;//Distance jusqu'à la prochaine inter avec x
+	double	sideY;//Distance jusqu'à la prochaine inter avec y
+	int		side;//Variable qui nous dit si on a touché un mur en x ou y
+	double	distW;//Distance entre le mur et le player
+	int		height;//Hauteur du mur (en fonction de distW)
+	int		start;//pixel de départ (sur l'axe y)
+	int		end;//pixel de fin (sur l'axe y)
+}		t_ray;
 
 typedef struct s_map
 {
@@ -93,6 +122,20 @@ typedef struct s_game
 	t_player	player;
 }		t_game;
 
+/* raycasting.c */
+void	print_img_rat(int **text, t_game *game);
+void	draw_line(t_ray *ray, t_game *game, int x);
+void	wall_height(t_ray *ray, t_player *player);
+void	dda(t_game *game, t_ray *ray);
+void	init_dda(t_ray *ray, t_player *player);
+void	init_raycasting(int x, t_ray *ray, t_player *player);
+void	raycasting(t_game *game);
+void	draw(t_game *game);
+
+/* player.c */
+void	player_init_2(t_player *player);
+void	player_init(t_player *player);
+
 /* test.c */
 void	draw_map(t_game *game, int i, int j);
 void	draw_square(t_game *game, int x, int y, int color);
@@ -106,6 +149,7 @@ void	set_pixel(t_image *image, int y, int x, int color);
 /* init.c */
 void	init(t_game *game);
 void	init_map(t_map *map);
+void	init_ray(t_ray *ray);
 void	init_info(t_info *info);
 void	init_player(t_player *player);
 

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/20 20:32:09 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:42:43 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	init_info(t_info *info)
 	info->ea_path = NULL;
 	info->c_color = NULL;
 	info->f_color = NULL;
+}
+
+void	init_ray(t_ray *ray)
+{
+	ray->cameraX = 0;
+	ray->dirX = 0;
+	ray->dirY = 0;
 }
 
 void	init_map(t_map *map)

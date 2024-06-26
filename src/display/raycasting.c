@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/24 22:40:38 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:50:21 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,6 @@ void	wall_height(t_ray *ray, t_player *player)
 	if (ray->end >= WINDOW_HEIGHT)
 		ray->end = WINDOW_HEIGHT - 1;
 	//printf("start :%d, end = %d\n", ray->start, ray->end);
-	/*if (ray->side == 0)
-		ray->wall_x = player->y + ray->distW * ray->dir_y;
-	else
-		ray->wall_x = player->pos_x + ray->distW * ray->dir_x;
-	ray->wall_x -= floor(ray->wall_x);*/
 }
 
 void	dda(t_game *game, t_ray *ray)
@@ -175,12 +170,12 @@ void	draw(t_game *game)
 {
 	int	i;
 
-	game->text = malloc((WINDOW_HEIGHT + 1) * sizeof(game->text));
+	game->text = malloc((WINDOW_HEIGHT + 1) * sizeof(int *));
 	i = 0;
 	while (i < WINDOW_HEIGHT)
 	{
 		game->text[i] = malloc((WINDOW_WIDTH + 1)
-				* sizeof(game->text));
+				* sizeof(int));
 		i++;
 	}
 	raycasting(game);

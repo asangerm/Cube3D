@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/24 14:42:43 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/27 00:04:47 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,26 @@ void	init_player(t_player *player)
 	player->face_to = '0';
 	player->x = 0;
 	player->y = 0;
+	player->dirX = 0;
+	player->dirY = 0;
+	player->planeX = 0;
+	player->planeY = 0;
 }
 
 void	init(t_game *game)
 {
+	int	i;
+
 	game->mlx = NULL;
 	game->win = NULL;
+	i = 0;
+	while (i < 256)
+	{
+		game->keypressed[i] = 0;
+		i++;
+	}
+	game->keyrotated[0] = 0;
+	game->keyrotated[1] = 0;
 	init_map(&game->map);
 	init_player(&game->player);
 }

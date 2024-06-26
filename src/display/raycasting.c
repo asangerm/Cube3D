@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/25 15:50:21 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:26:53 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,24 +142,25 @@ void	init_raycasting(int x, t_ray *ray, t_player *player)
 	ray->deltaX = fabs(1 / ray->dirX);
 	ray->deltaY = fabs(1 / ray->dirY);
 	/*printf("CameraX = %f, dirX = %f, dirY = %f, mapX = %d, \
-		mapY = %d, deltaX = %f, deltaY = %f\n", ray->cameraX, ray->dirX, ray->dirY, ray->mapX, ray->mapY, ray->deltaX, ray->deltaY);*/
-}
+		mapY = %d, deltaX = %f, deltaY = %f\n", ray->cameraX, ray->dirX, ray->dirY, ray->mapX, ray->mapY, ray->deltaX, ray->deltaY);
+
+*/}
 
 void	raycasting(t_game *game)
 {
-	t_player	player;
+	t_player	*player;
 	t_ray		ray;
 	int			x;
 
-	player = game->player;
-	player_init(&player);
+	player = &(game->player);
+	player_init(player);
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
-		init_raycasting(x, &ray, &player);
-		init_dda(&ray, &player);
+		init_raycasting(x, &ray, player);
+		init_dda(&ray, player);
 		dda(game, &ray);
-		wall_height(&ray, &player);
+		wall_height(&ray, player);
 		draw_line(&ray, game, x);
 		x++;
 	}

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 20:10:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/24 19:08:32 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/26 22:21:10 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	check_player(t_game *game, char **map)
 			{
 				game->player.x = j + 0.5;
 				game->player.y = i + 0.5;
+				map[i][j] = '0';
 			}
 			j++;
 		}

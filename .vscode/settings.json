@@ -6,6 +6,18 @@
 		"array": "cpp",
 		"string": "cpp",
 		"string_view": "cpp",
-		"test_utils.C": "cpp"
+		"test_utils.C": "cpp",
+		"*.tcc": "c",
+		"deque": "c",
+		"unordered_map": "c",
+		"vector": "c",
+		"functional": "c",
+		"iterator": "c",
+		"memory_resource": "c",
+		"numeric": "c",
+		"ostream": "c",
+		"streambuf": "c",
+		"tuple": "c",
+		"utility": "c"
 	}
 }

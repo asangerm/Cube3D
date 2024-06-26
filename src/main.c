@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:38:47 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/26 16:03:45 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/06/26 23:03:09 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int key_press(int keycode, t_game *game)
 	// ft_printf("key pressed : %d\n", keycode);
 	if (keycode < 256)
 		game->keypressed[keycode] = 1;
+	if (keycode == K_LEFT_ARROW)
+		game->keyrotated[0] = 1;
+	if (keycode == K_RIGHT_ARROW)
+		game->keyrotated[1] = 1;
 	key_hook(keycode, game);
 	return (0);
 }
@@ -26,6 +30,10 @@ int key_release(int keycode, t_game *game)
 	// ft_printf("key release : %d\n", keycode);
 	if (keycode < 256)
 		game->keypressed[keycode] = 0;
+	if (keycode == K_LEFT_ARROW)
+		game->keyrotated[0] = 0;
+	if (keycode == K_RIGHT_ARROW)
+		game->keyrotated[1] = 0;
 	return (0);
 }
 

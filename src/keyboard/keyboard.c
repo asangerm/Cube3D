@@ -3,25 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:49:50 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/24 23:04:11 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:00:52 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	move(t_game *game, int keybind)
+void	move2(t_game *game)
 {
-	if (keybind == K_UP)
-		game->player.y -= 1;
-	if (keybind == K_DOWN)
-		game->player.y += 1;
-	if (keybind == K_LEFT)
-		game->player.x -= 1;
-	if (keybind == K_RIGHT)
-		game->player.x += 1;
+	if (game->player.face_to == 'E')
+	{
+		if (game->keypressed[K_UP] == 1)
+			game->player.x += 0.1;
+		if (game->keypressed[K_DOWN] == 1)
+			game->player.x -= 0.1;
+		if (game->keypressed[K_LEFT] == 1)
+			game->player.y -= 0.1;
+		if (game->keypressed[K_RIGHT] == 1)
+			game->player.y += 0.1;
+	}
+	else if (game->player.face_to == 'W')
+	{
+		if (game->keypressed[K_UP] == 1)
+			game->player.x -= 0.1;
+		if (game->keypressed[K_DOWN] == 1)
+			game->player.x += 0.1;
+		if (game->keypressed[K_LEFT] == 1)
+			game->player.y += 0.1;
+		if (game->keypressed[K_RIGHT] == 1)
+			game->player.y -= 0.1;
+	}
+}
+
+void	move(t_game *game)
+{
+	if (game->player.face_to == 'N')
+	{
+		if (game->keypressed[K_UP] == 1)
+			game->player.y -= 0.1;
+		if (game->keypressed[K_DOWN] == 1)
+			game->player.y += 0.1;
+		if (game->keypressed[K_LEFT] == 1)
+			game->player.x -= 0.1;
+		if (game->keypressed[K_RIGHT] == 1)
+			game->player.x += 0.1;
+	}
+	else if (game->player.face_to == 'S')
+	{
+		if (game->keypressed[K_UP] == 1)
+			game->player.y += 0.1;
+		if (game->keypressed[K_DOWN] == 1)
+			game->player.y -= 0.1;
+		if (game->keypressed[K_LEFT] == 1)
+			game->player.x += 0.1;
+		if (game->keypressed[K_RIGHT] == 1)
+			game->player.x -= 0.1;
+	}
+	else
+		move2(game);
 	draw(game);
 }
 
@@ -69,14 +111,7 @@ void	rotate(t_game *game, int keybind)
 
 int	key_hook(int keybind, t_game *game)
 {
-	if (keybind == K_UP)
-		move(game, K_UP);
-	if (keybind == K_DOWN)
-		move(game, K_DOWN);
-	if (keybind == K_LEFT)
-		move(game, K_LEFT);
-	if (keybind == K_RIGHT)
-		move(game, K_RIGHT);
+	move(game);
 	if (keybind == K_RIGHT_ARROW)
 		rotate(game, K_RIGHT_ARROW);
 	if (keybind == K_LEFT_ARROW)

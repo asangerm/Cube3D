@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/26 22:45:44 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:34:06 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
+
+
+#include <time.h>
 
 # include "../libft/src/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -122,7 +125,16 @@ typedef struct s_game
 	t_player	player;
 	int			keypressed[256];
 	int			keyrotated[2];
+
+	double  previous_time;
+	double  current_time;
+	int     frame_count;
+	int     fps;
 }		t_game;
+
+void calculate_and_display_fps(t_game *game);
+double get_time_in_seconds();
+
 
 /* raycasting.c */
 void	print_img_rat(int **text, t_game *game);

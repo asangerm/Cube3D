@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/27 00:04:47 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:21:39 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ void	init(t_game *game)
 {
 	int	i;
 
+	game->current_time = 0.0;
+	game->fps = 0;
+	game->frame_count = 0;
+	game->current_time = 0.0; 
 	game->mlx = NULL;
 	game->win = NULL;
 	i = 0;

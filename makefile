@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
+#    By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/06/24 16:46:05 by asangerm         ###   ########.fr        #
+#    Updated: 2024/06/27 15:24:40 by nfradet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ PARSING		=	parsing.c		\
 				textures.c
 DISPLAY		=	test.c			\
 				test_utils.c	\
-				raycasting.c
+				raycasting.c	\
+				fps.c
 INIT		=	init.c
 PLAYER		=	player.c
 KEYBOARD	=	keyboard.c

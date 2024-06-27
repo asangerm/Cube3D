@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:38:47 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/26 23:03:09 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:33:43 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	main(int argc, char **argv)
 	parsing(&game, argc, argv);
     memset(game.keypressed, 0, sizeof(game.keypressed));
 	game.mlx = mlx_init();
+    game.previous_time = get_time_in_seconds();
 	if (!game.mlx)
 		return (0);
 	game.win = mlx_new_window(game.mlx, WINDOW_WIDTH,

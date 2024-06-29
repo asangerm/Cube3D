@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:49:50 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/28 13:52:26 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/06/29 17:23:40 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,36 +73,30 @@ void	move(t_game *game)
 
 	next_x = game->player.x;
 	next_y = game->player.y;
-	printf("playerX %f\n", game->player.x);
-	printf("playerY %f\n", game->player.y);
 	if (game->keypressed[K_UP] == 1)
 	{
-		next_x = game->player.x + game->player.dirX * 0.1;
-		next_y = game->player.y + game->player.dirY * 0.1;
+		next_x += game->player.dirX * 0.1;
+		next_y += game->player.dirY * 0.1;
 	}
 	if (game->keypressed[K_DOWN] == 1)
 	{
-		next_x = game->player.x - game->player.dirX * 0.1;
-		next_y = game->player.y - game->player.dirY * 0.1;
+		next_x -= game->player.dirX * 0.1;
+		next_y -= game->player.dirY * 0.1;
 	}
 	if (game->keypressed[K_LEFT] == 1)
 	{
-		next_x = game->player.x + game->player.dirY * 0.1;
-		next_y = game->player.y - game->player.dirX * 0.1;
+		next_x += game->player.dirY * 0.1;
+		next_y -= game->player.dirX * 0.1;
 	}
 	if (game->keypressed[K_RIGHT] == 1)
 	{
-		next_x = game->player.x - game->player.dirY * 0.1;
-		next_y = game->player.y + game->player.dirX * 0.1;
+		next_x -= game->player.dirY * 0.1;
+		next_y += game->player.dirX * 0.1;
 	}
-	ft_printf("map next %c\n", game->map.real_map[(int)next_y][(int)game->player.x]);
-	printf("nextX %f\n", next_x);
-	printf("nexty %f\n", next_y);
 	if (game->map.real_map[(int)next_y][(int)game->player.x] != '1')
 		game->player.y = next_y;
 	if (game->map.real_map[(int)game->player.y][(int)next_x] != '1')
 		game->player.x = next_x;
-	ft_printf("---------------------------------------------------------\n");
 }
 
 // void	move(t_game *game)
@@ -198,12 +192,13 @@ void	rotate(t_game *game)
 	// printf("dirX = %f, dirY = %f\n", p->dirX, p->dirY);
 }
 
-int	key_hook(int keybind, t_game *game)
+int	key_hook(int key, t_game *game)
 {
-	move(game);
+	if (key == K_DOWN || key == K_UP || key == K_LEFT || key == K_RIGHT)
+		move(game);
 	rotate(game);
-	draw(game);
-	if (keybind == K_ECHAP)
+	// draw(game);
+	if (key == K_ECHAP)
 		end(game);
 	return (0);
 }

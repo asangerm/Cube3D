@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:38:47 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/27 15:33:43 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/06/29 17:14:10 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int key_release(int keycode, t_game *game)
 		game->keyrotated[0] = 0;
 	if (keycode == K_RIGHT_ARROW)
 		game->keyrotated[1] = 0;
+	// key_hook(keycode, game);
 	return (0);
 }
 
@@ -58,7 +59,8 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, 3, 1L<<1, key_release, &game);
 	mlx_hook(game.win, 17, 1L << 17, close_window, &game);
 	//draw_map(&game, 0, 0);
-	draw(&game);
+	mlx_loop_hook(game.mlx, draw, &game);
+	// draw(&game);
 	mlx_loop(game.mlx);
 	return (0);
 }

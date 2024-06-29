@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:18:48 by nfradet           #+#    #+#             */
-/*   Updated: 2024/06/27 15:42:26 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:56:18 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	calculate_and_display_fps(t_game *game)
 		game->frame_count = 0;
 		game->previous_time = game->current_time;
 	}
-	ft_printf("FPS:%d\n", game->fps);
 	sprintf(fps_str, "FPS: %d", game->fps);
 	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, fps_str);
 }

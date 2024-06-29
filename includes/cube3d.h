@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/27 15:34:06 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:32:56 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void	dda(t_game *game, t_ray *ray);
 void	init_dda(t_ray *ray, t_player *player);
 void	init_raycasting(int x, t_ray *ray, t_player *player);
 void	raycasting(t_game *game);
-void	draw(t_game *game);
+int		draw(t_game *game);
 
 /* player.c */
 void	player_init_2(t_player *player);

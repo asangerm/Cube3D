@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/27 15:41:24 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:32:26 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	raycasting(t_game *game)
 	calculate_and_display_fps(game);
 }
 
-void	draw(t_game *game)
+int	draw(t_game *game)
 {
 	int	i;
 
@@ -182,4 +182,5 @@ void	draw(t_game *game)
 	}
 	raycasting(game);
 	free_star(game->text, WINDOW_HEIGHT);
+	return (0);
 }

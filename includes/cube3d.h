@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/29 16:32:56 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/06/29 18:18:43 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ typedef struct s_player
 	double			y;
 	double			planeX;//Vecteur direction camera
 	double			planeY;
+	int				moveX;
+	int				moveY;
+	int				rota;
 }		t_player;
 
 typedef struct s_ray
@@ -175,7 +178,7 @@ void	ft_error(t_game *game, char *str);
 
 /* keyboard.c */
 int		close_window(t_game *game);
-int		key_hook(int keybind, t_game *game);
+int		key_hook(t_game *game);
 
 /* parsing.c */
 int		split_len(char **tab);

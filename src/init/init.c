@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/27 15:21:39 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/06/29 18:39:31 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	init_player(t_player *player)
 	player->dirY = 0;
 	player->planeX = 0;
 	player->planeY = 0;
+	player->rota = 0;
+	player->moveX = 0;
+	player->moveY = 0;
 }
 
 void	init(t_game *game)

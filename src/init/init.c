@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/29 18:39:31 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:32:26 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	init_info(t_info *info)
 
 void	init_ray(t_ray *ray)
 {
-	ray->cameraX = 0;
-	ray->dirX = 0;
-	ray->dirY = 0;
+	ray->camera_x = 0;
+	ray->dir_x = 0;
+	ray->dir_y = 0;
 }
 
 void	init_map(t_map *map)
@@ -47,13 +47,13 @@ void	init_player(t_player *player)
 	player->face_to = '0';
 	player->x = 0;
 	player->y = 0;
-	player->dirX = 0;
-	player->dirY = 0;
-	player->planeX = 0;
-	player->planeY = 0;
+	player->dir_x = 0;
+	player->dir_y = 0;
+	player->plane_x = 0;
+	player->plane_y = 0;
 	player->rota = 0;
-	player->moveX = 0;
-	player->moveY = 0;
+	player->move_x = 0;
+	player->move_y = 0;
 }
 
 void	init(t_game *game)
@@ -63,7 +63,7 @@ void	init(t_game *game)
 	game->current_time = 0.0;
 	game->fps = 0;
 	game->frame_count = 0;
-	game->current_time = 0.0; 
+	game->current_time = 0.0;
 	game->mlx = NULL;
 	game->win = NULL;
 	i = 0;

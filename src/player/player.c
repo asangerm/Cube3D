@@ -6,50 +6,50 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:02:00 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/26 23:23:46 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:29:28 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	player_init_2(t_player *player)
+void	player_start_2(t_player *player)
 {
 	if (player->face_to == 'E')
 	{
-		player->dirX = 1;
-		player->dirY = 0;
-		player->planeX = 0;
-		player->planeY = 0.66;
+		player->dir_x = 1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = 0.66;
 	}
 	else if (player->face_to == 'W')
 	{
-		player->dirX = -1;
-		player->dirY = 0;
-		player->planeX = 0;
-		player->planeY = -0.66;
+		player->dir_x = -1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = -0.66;
 	}
-	printf("init :dirX = %f, dirY = %f\n", player->dirX, player->dirY);
+	printf("init :dir_x = %f, dir_y = %f\n", player->dir_x, player->dir_y);
 }
 
-void	player_init(t_player *player)
+void	player_start(t_player *player)
 {
-	if (player->dirX != 0 || player->dirY != 0
-		|| player->planeX != 0 || player->planeY != 0)
+	if (player->dir_x != 0 || player->dir_y != 0
+		|| player->plane_x != 0 || player->plane_y != 0)
 		return ;
 	if (player->face_to == 'N')
 	{
-		player->dirX = 0;
-		player->dirY = -1;
-		player->planeX = 0.66;
-		player->planeY = 0;
+		player->dir_x = 0;
+		player->dir_y = -1;
+		player->plane_x = 0.66;
+		player->plane_y = 0;
 	}
 	else if (player->face_to == 'S')
 	{
-		player->dirX = 0;
-		player->dirY = 1;
-		player->planeX = -0.66;
-		player->planeY = 0;
+		player->dir_x = 0;
+		player->dir_y = 1;
+		player->plane_x = -0.66;
+		player->plane_y = 0;
 	}
 	else
-		player_init_2(player);
+		player_start_2(player);
 }

@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   fps.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:18:48 by nfradet           #+#    #+#             */
-/*   Updated: 2024/06/28 13:56:18 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/01 23:22:40 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-double	get_time_in_seconds()
+double	get_time_in_seconds(void)
 {
-	struct timespec ts;
+	struct timespec	ts;
+
 	timespec_get(&ts, TIME_UTC);
 	return (ts.tv_sec + ts.tv_nsec / 1e9);
 }
 
 void	calculate_and_display_fps(t_game *game)
 {
-	char fps_str[32];
+	char	fps_str[32];
 
 	game->current_time = get_time_in_seconds();
 	game->frame_count++;

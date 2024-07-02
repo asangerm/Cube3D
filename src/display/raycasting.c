@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/02 17:05:25 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/02 21:03:08 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	wall_height(t_ray *ray, t_player *player)
 	ray->end = ray->height / 2 + WINDOW_HEIGHT / 2;
 	if (ray->end >= WINDOW_HEIGHT)
 		ray->end = WINDOW_HEIGHT - 1;
+	if (ray->side == 0)
+		ray->wall_x = player->y + ray->dist_w * ray->dir_y;
+	else
+		ray->wall_x = player->x + ray->dist_w * ray->dir_x;
+	ray->wall_x -= floor(ray->wall_x);
 }
 
 void	dda(t_game *game, t_ray *ray)

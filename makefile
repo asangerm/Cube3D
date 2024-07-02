@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
+#    By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/07/01 23:34:29 by asangerm         ###   ########.fr        #
+#    Updated: 2024/07/02 20:00:46 by nfradet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ PARSING		=	parsing.c		\
 				map_checker.c	\
 				map_checker_2.c	\
 				colors.c		\
-				textures.c
+				textures.c		\
+				textures_2.c
 DISPLAY		=	test.c			\
 				test_utils.c	\
 				drawing.c		\

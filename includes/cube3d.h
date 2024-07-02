@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/02 17:03:44 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/02 21:29:52 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@
 # define ERROR_EMOJI "\U000026D4"
 
 # define WINDOW_NAME "Cube 3D"
-# define WINDOW_WIDTH 640
-# define WINDOW_HEIGHT 480
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 800
+
+# define MOVE_SPEED 0.03
 
 # define K_UP 119
 # define K_DOWN 115
@@ -48,6 +50,7 @@
 # define TOO_MUCH_ARG "Too much arguments!"
 # define WRONG_EXT "Extension of file is incorrect"
 # define CANT_OPEN "We can't open the given file"
+# define LOADING_TEX "Error while loading texture"
 # define INVALID_TEXT "Invalid texture in file "
 # define INVALID_COLOR "Invalid color in file"
 # define INVALID_MAP "Invalid map in file"
@@ -61,6 +64,17 @@ typedef struct s_info
 	int			*f_color;
 	int			*c_color;
 }		t_info;
+
+typedef struct s_image
+{
+	void	*img;
+	int		height;
+	int		width;
+	int		*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}		t_image;
 
 typedef struct s_player
 {
@@ -94,6 +108,10 @@ typedef struct s_ray
 	int		height;//Hauteur du mur (en fonction de dist_w)
 	int		start;//pixel de départ (sur l'axe y)
 	int		end;//pixel de fin (sur l'axe y)
+	double	wall_x;//la coordonnee x ou le mur a ete touche
+	int		tex_x;//la coordonnee x de la texture
+	double	step;
+	t_image	image;
 }		t_ray;
 
 typedef struct s_map
@@ -109,16 +127,13 @@ typedef struct s_map
 	int			end_map;
 }		t_map;
 
-typedef struct s_image
+typedef struct s_textures
 {
-	void	*img;
-	int		height;
-	int		width;
-	int		*data;
-	int		bpp;
-	int		size_line;
-	int		endian;
-}		t_image;
+	t_image so;
+	t_image no;
+	t_image we;
+	t_image ea;
+}		t_textures;
 
 typedef struct s_game
 {
@@ -128,6 +143,7 @@ typedef struct s_game
 	int			tile_size;//test
 	t_map		map;
 	t_player	player;
+	t_textures	textures;
 	int			keypressed[256];
 	int			keyrotated[2];
 	double		previous_time;
@@ -139,6 +155,7 @@ typedef struct s_game
 /*-------------------- display --------------------*/
 
 /* drawing.c */
+void	init_textures(t_game *game, t_ray *ray);
 void	print_img_ray(int **text, t_game *game);
 void	draw_line(t_ray *ray, t_game *game, int x);
 int		draw(t_game *game);
@@ -243,6 +260,9 @@ char	*get_path(char *line, int j);
 void	texture_checker(t_game *game);
 void	check_path(t_game *game, char *path);
 void	get_textures(t_game *game, t_info *info, char *line, int j);
+
+/* textures_2.c */
+void	create_mlx_textures(t_game *game);
 
 /*-------------------- player --------------------*/
 

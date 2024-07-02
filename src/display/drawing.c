@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:24:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/01 23:30:18 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:47:21 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ void	draw_line(t_ray *ray, t_game *game, int x)
 	while (i < WINDOW_HEIGHT)
 	{
 		if (i < ray->start)
-			game->text[i][x] = 0xa7d6ff;
+			game->text[i][x] = WOL_CEIL;
 		else if (i >= ray->start && i <= ray->end)
 		{
-			game->text[i][x] = 0x22427c;
+			game->text[i][x] = WOL_WALL;
 			if (ray->side == 1)
 				game->text[i][x] /= 2;
 		}
 		else
-			game->text[i][x] = 0xcab2a3;
+			game->text[i][x] = WOL_FLOOR;
 		i++;
 	}
 }

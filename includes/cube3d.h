@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/01 23:39:15 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:47:13 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <string.h>
 # include <fcntl.h>
 # include <math.h>
+
+# define WOL_CEIL 0x3b3b3b
+# define WOL_FLOOR 0x737373
+# define WOL_WALL 0x0800a6
 
 # define RED "\033[0;31m"
 # define YELLOW	"\033[0;33m"

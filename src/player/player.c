@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:02:00 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/01 23:29:28 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:53:40 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	player_start_2(t_player *player)
 		player->plane_x = 0;
 		player->plane_y = -0.66;
 	}
-	printf("init :dir_x = %f, dir_y = %f\n", player->dir_x, player->dir_y);
 }
 
 void	player_start(t_player *player)

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:31:18 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/03 01:58:45 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:31:49 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	handle_textures(t_game *game, t_ray *ray, int x)
 	{
 		tex_y = (int)tex_pos & (ray->image.height - 1);
 		tex_pos += ray->step;
-		game->text[y][x] = ray->image.data[ray->image.height
+		game->tab_img[y][x] = ray->image.data[ray->image.height
 			* tex_y + ray->tex_x];
 		y++;
 	}

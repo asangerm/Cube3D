@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:24:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/03 02:39:16 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:30:39 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_texture(t_game *game, t_textures *text)
 		mlx_destroy_image(game->mlx, text->no.img);
 }
 
-void	print_img_ray(int **text, t_game *game)
+void	print_img_ray(int **tab_img, t_game *game)
 {
 	t_image	image;
 	int		i;
@@ -40,7 +40,7 @@ void	print_img_ray(int **text, t_game *game)
 		j = 0;
 		while (j < WINDOW_WIDTH)
 		{
-			set_pixel(&image, i, j, text[i][j]);
+			set_pixel(&image, i, j, tab_img[i][j]);
 			j++;
 		}
 		i++;
@@ -72,14 +72,14 @@ void	draw_line(t_ray *ray, t_game *game, int x)
 	while (i < WINDOW_HEIGHT)
 	{
 		if (i < ray->start)
-			game->text[i][x] = color_change(game->map.map_info.c_color);
+			game->tab_img[i][x] = color_change(game->map.map_info.c_color);
 		else if (i >= ray->start && i <= ray->end)
 		{
 			handle_textures(game, ray, x);
 			i = ray->end;
 		}
 		else
-			game->text[i][x] = color_change(game->map.map_info.f_color);
+			game->tab_img[i][x] = color_change(game->map.map_info.f_color);
 		i++;
 	}
 }
@@ -88,15 +88,15 @@ int	draw(t_game *game)
 {
 	int	i;
 
-	game->text = malloc((WINDOW_HEIGHT + 1) * sizeof(int *));
+	game->tab_img = malloc((WINDOW_HEIGHT + 1) * sizeof(int *));
 	i = 0;
 	while (i < WINDOW_HEIGHT)
 	{
-		game->text[i] = malloc((WINDOW_WIDTH + 1)
+		game->tab_img[i] = malloc((WINDOW_WIDTH + 1)
 				* sizeof(int));
 		i++;
 	}
 	raycasting(game);
-	free_star(game->text, WINDOW_HEIGHT);
+	free_star(game->tab_img, WINDOW_HEIGHT);
 	return (0);
 }

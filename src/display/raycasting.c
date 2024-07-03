@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/02 21:03:08 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/03 15:58:49 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	raycasting(t_game *game)
 		draw_line(&ray, game, x);
 		x++;
 	}
-	print_img_ray(game->text, game);
+	print_img_ray(game->tab_img, game);
+	draw_map(game, 0, 0);
 	calculate_and_display_fps(game);
 }

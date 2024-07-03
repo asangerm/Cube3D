@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/03 02:39:33 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:28:41 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,8 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	int			**text;//test
+	int			**tab_img;//test
+	int			**mini_map;//test
 	int			tile_size;//test
 	t_map		map;
 	t_player	player;

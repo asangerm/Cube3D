@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/02 21:29:52 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/03 02:39:33 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define ERROR_EMOJI "\U000026D4"
 
 # define WINDOW_NAME "Cube 3D"
-# define WINDOW_WIDTH 1080
-# define WINDOW_HEIGHT 800
+# define WINDOW_WIDTH 640
+# define WINDOW_HEIGHT 480
 
 # define MOVE_SPEED 0.03
 
@@ -129,10 +129,10 @@ typedef struct s_map
 
 typedef struct s_textures
 {
-	t_image so;
-	t_image no;
-	t_image we;
-	t_image ea;
+	t_image	so;
+	t_image	no;
+	t_image	we;
+	t_image	ea;
 }		t_textures;
 
 typedef struct s_game
@@ -155,21 +155,22 @@ typedef struct s_game
 /*-------------------- display --------------------*/
 
 /* drawing.c */
-void	init_textures(t_game *game, t_ray *ray);
+int		draw(t_game *game);
+int		color_change(int *color);
 void	print_img_ray(int **text, t_game *game);
 void	draw_line(t_ray *ray, t_game *game, int x);
-int		draw(t_game *game);
+void	free_texture(t_game *game, t_textures *text);
 
 /* fps.c */
-void	calculate_and_display_fps(t_game *game);
 double	get_time_in_seconds(void);
+void	calculate_and_display_fps(t_game *game);
 
 /* raycasting.c */
-void	wall_height(t_ray *ray, t_player *player);
+void	raycasting(t_game *game);
 void	dda(t_game *game, t_ray *ray);
 void	init_dda(t_ray *ray, t_player *player);
+void	wall_height(t_ray *ray, t_player *player);
 void	init_raycasting(int x, t_ray *ray, t_player *player);
-void	raycasting(t_game *game);
 
 /* test_utils.c */
 void	free_star(int **tab, int h);
@@ -177,8 +178,8 @@ void	set_pixel(t_image *image, int y, int x, int color);
 
 /* test.c */
 void	draw_map(t_game *game, int i, int j);
-void	draw_square(t_game *game, int x, int y, int color);
 void	init_text(t_game *game, t_map map, int tile_size);
+void	draw_square(t_game *game, int x, int y, int color);
 void	print_image(int **text, t_game *game, int tile_size);
 
 /*-------------------- ending --------------------*/
@@ -229,8 +230,8 @@ void	check_center(t_game *game, char **map, int i, int j);
 void	check_border(t_game *game, char **map, int i, int j);
 
 /* map_checker.c */
-void	map_checker(t_game *game);
 void	check_end(t_game *game);
+void	map_checker(t_game *game);
 void	check_char(t_game *game, char **map);
 void	check_position(t_game *game, char **map);
 void	check_player(t_game *game, char **map);
@@ -262,7 +263,11 @@ void	check_path(t_game *game, char *path);
 void	get_textures(t_game *game, t_info *info, char *line, int j);
 
 /* textures_2.c */
+void	create_suite(t_game *game);
+void	init_textures_game(t_game *game);
 void	create_mlx_textures(t_game *game);
+void	init_textures(t_game *game, t_ray *ray);
+void	handle_textures(t_game *game, t_ray *ray, int x);
 
 /*-------------------- player --------------------*/
 

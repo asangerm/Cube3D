@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:24:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/02 21:29:06 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/03 02:39:16 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	free_texture(t_game *game, t_textures *text)
+{
+	if (text->ea.img)
+		mlx_destroy_image(game->mlx, text->ea.img);
+	if (text->we.img)
+		mlx_destroy_image(game->mlx, text->we.img);
+	if (text->so.img)
+		mlx_destroy_image(game->mlx, text->so.img);
+	if (text->no.img)
+		mlx_destroy_image(game->mlx, text->no.img);
+}
 
 void	print_img_ray(int **text, t_game *game)
 {
@@ -37,45 +49,18 @@ void	print_img_ray(int **text, t_game *game)
 	mlx_destroy_image(game->mlx, image.img);
 }
 
-void	init_textures(t_game *game, t_ray *ray)
+int	color_change(int *color)
 {
-	// t_image	image;
-	// double		tex_width;
+	long	res;
+	int		r;
+	int		g;
+	int		b;
 
-	if (ray->side == 0)
-	{
-		if (ray->dir_x <= 0) // east
-			ray->image = game->textures.ea;
-		else //west
-			ray->image = game->textures.we;
-	}
-	else
-	{
-		if (ray->dir_y <= 0) //south
-			ray->image = game->textures.so;
-		else //north
-			ray->image = game->textures.no;
-	}
-	ray->tex_x = (int)(ray->wall_x * (double)ray->image.width);
-	ray->step = 1.0 * ray->image.height / ray->height;
-}
-
-void	handle_textures(t_game *game, t_ray *ray, int x)
-{
-	int		y;
-	double	tex_pos;
-	int		tex_y;
-
-	tex_pos = 0;
-	tex_pos = (ray->start - WINDOW_HEIGHT / 2 + ray->height / 2) * ray->step;
-	y = ray->start;
-	while (y <= ray->end)
-	{
-		tex_y = (int)tex_pos & (ray->image.height - 1);
-		tex_pos += ray->step;
-		game->text[y][x] = ray->image.data[ray->image.height * tex_y + ray->tex_x];
-		y++;
-	}
+	r = color[0];
+	g = color[1];
+	b = color[2];
+	res = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+	return (res);
 }
 
 void	draw_line(t_ray *ray, t_game *game, int x)
@@ -87,14 +72,14 @@ void	draw_line(t_ray *ray, t_game *game, int x)
 	while (i < WINDOW_HEIGHT)
 	{
 		if (i < ray->start)
-			game->text[i][x] = WOL_CEIL;
+			game->text[i][x] = color_change(game->map.map_info.c_color);
 		else if (i >= ray->start && i <= ray->end)
 		{
 			handle_textures(game, ray, x);
 			i = ray->end;
 		}
 		else
-			game->text[i][x] = WOL_FLOOR;
+			game->text[i][x] = color_change(game->map.map_info.f_color);
 		i++;
 	}
 }

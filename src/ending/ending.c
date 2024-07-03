@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:59:35 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/21 15:53:42 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/03 02:39:00 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	free_map(t_map *map)
 
 void	end(t_game *game)
 {
+	free_texture(game, &game->textures);
 	if (game->win != NULL)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx != NULL)

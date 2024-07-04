@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/04 04:03:01 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:40:30 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define MINIMAP_SIZE 7
 
 # define MOVE_SPEED 0.03
+# define COEFF_MOUSE_ROTA 10000.0
 
 # define K_UP 119
 # define K_DOWN 115
@@ -146,8 +147,9 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_textures	textures;
-	int			keypressed[256];
-	int			keyrotated[2];
+	// int			last_x;
+	// int			is_rota_stopping;
+	double		move_speed;
 	double		previous_time;
 	double		current_time;
 	int			frame_count;
@@ -209,6 +211,7 @@ int		key_hook(t_game *game);
 int		close_window(t_game *game);
 int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
+int		mouse_move(int x, int y, t_game *game);
 
 /* move.c */
 void	rotate(t_game *game);

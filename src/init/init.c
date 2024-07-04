@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/01 22:32:26 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:35:14 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,14 @@ void	init_player(t_player *player)
 
 void	init(t_game *game)
 {
-	int	i;
-
 	game->current_time = 0.0;
 	game->fps = 0;
 	game->frame_count = 0;
 	game->current_time = 0.0;
+	game->move_speed = 0.03;
+	// game->is_rota_stopping = 1;
 	game->mlx = NULL;
 	game->win = NULL;
-	i = 0;
-	while (i < 256)
-	{
-		game->keypressed[i] = 0;
-		i++;
-	}
-	game->keyrotated[0] = 0;
-	game->keyrotated[1] = 0;
 	init_map(&game->map);
 	init_player(&game->player);
 }

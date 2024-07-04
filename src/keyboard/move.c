@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:31:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/02 17:35:53 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/04 21:29:01 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	rotate(t_game *game)
 	if (game->player.rota == 0)
 		return ;
 	if (game->player.rota < 0)
-		rot = -MOVE_SPEED;
+		rot = -game->move_speed;
 	else if (game->player.rota > 0)
-		rot = MOVE_SPEED;
+		rot = game->move_speed;
 	else
 		return ;
 	p = &(game->player);

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/03 15:28:41 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/04 04:03:01 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define WINDOW_NAME "Cube 3D"
 # define WINDOW_WIDTH 640
 # define WINDOW_HEIGHT 480
+# define MINIMAP_SIZE 7
 
 # define MOVE_SPEED 0.03
 
@@ -179,7 +180,7 @@ void	set_pixel(t_image *image, int y, int x, int color);
 
 /* test.c */
 void	draw_map(t_game *game, int i, int j);
-void	init_text(t_game *game, t_map map, int tile_size);
+void	init_text(t_game *game, int tile_size);
 void	draw_square(t_game *game, int x, int y, int color);
 void	print_image(int **text, t_game *game, int tile_size);
 

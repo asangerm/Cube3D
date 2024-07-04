@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:11:14 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/04 23:26:14 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/05 00:48:24 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_square(t_game *game, int x, int y, int color)
 		j = 0;
 		while (j < size)
 		{
-			game->mini_map[x * size + i][y * size + j] = color;
+			game->mini_map[x * size + i + 2][y * size + j + 2] = color;
 			j++;
 		}
 		i++;
@@ -66,18 +66,18 @@ void	init_text(t_game *game, int tile_size)
 	int	i;
 	int	j;
 
-	game->mini_map = malloc((MINIMAP_SIZE * tile_size) * sizeof(int *));
+	game->mini_map = malloc((MINIMAP_SIZE * tile_size + 4) * sizeof(int *));
 	i = 0;
-	while (i < MINIMAP_SIZE * tile_size)
+	while (i < MINIMAP_SIZE * tile_size + 4)
 	{
-		game->mini_map[i] = malloc((MINIMAP_SIZE * tile_size) * sizeof(int));
+		game->mini_map[i] = malloc((MINIMAP_SIZE * tile_size + 4) * sizeof(int));
 		i++;
 	}
 	i = 0;
-	while (i < MINIMAP_SIZE * tile_size)
+	while (i < MINIMAP_SIZE * tile_size + 4)
 	{
 		j = 0;
-		while(j < MINIMAP_SIZE * tile_size)
+		while(j < MINIMAP_SIZE * tile_size + 4)
 		{
 			game->mini_map[i][j] = 0x000000;
 			j++;
@@ -92,15 +92,15 @@ void	print_image(int **mini_map, t_game *game, int tile_size)
 	int		i;
 	int		j;
 
-	image.img = mlx_new_image(game->mlx, MINIMAP_SIZE * tile_size,
-			MINIMAP_SIZE * tile_size);
+	image.img = mlx_new_image(game->mlx, MINIMAP_SIZE * tile_size + 4,
+			MINIMAP_SIZE * tile_size + 4);
 	image.data = (int *)mlx_get_data_addr(image.img, &image.bpp,
 			&image.size_line, &image.endian);
 	i = 0;
-	while (i < MINIMAP_SIZE * tile_size)
+	while (i < MINIMAP_SIZE * tile_size + 4)
 	{
 		j = 0;
-		while (j < MINIMAP_SIZE * tile_size)
+		while (j < MINIMAP_SIZE * tile_size + 4)
 		{
 			set_pixel(&image, i, j, mini_map[i][j]);
 			j++;
@@ -127,9 +127,9 @@ void	draw_triangle_north(t_game *game, int x, int y, int colorp)
 		while (j < size)
 		{
 			if (j < size / 2 && j - step >= 0)
-				game->mini_map[x * size + i][y * size + j] = colorp;
+				game->mini_map[x * size + i + 2][y * size + j + 2] = colorp;
 			if (j >= size / 2 && j + step <= size - 1)
-				game->mini_map[x * size + i][y * size + j] = colorp;
+				game->mini_map[x * size + i + 2][y * size + j + 2] = colorp;
 			j++;
 		}
 		if (i % 2 == 1)
@@ -154,9 +154,9 @@ void	draw_triangle_south(t_game *game, int x, int y, int colorp)
 		while (j < size)
 		{
 			if (j < size / 2 && j >= step)
-				game->mini_map[x * size + i][y * size + j] = colorp;
+				game->mini_map[x * size + i + 2][y * size + j + 2] = colorp;
 			if (j >= size / 2 && j <= size - 1 - step)
-				game->mini_map[x * size + i][y * size + j] = colorp;
+				game->mini_map[x * size + i + 2][y * size + j + 2] = colorp;
 			j++;
 		}
 		if (i % 2 == 1)
@@ -181,9 +181,9 @@ void	draw_triangle_east(t_game *game, int x, int y, int colorp)
 		while (j < size)
 		{
 			if (i < size / 2 && (j - step <= i || j - step - 1 <= i))
-				game->mini_map[x * size + i][y * size + j] = colorp;
+				game->mini_map[x * size + i + 2][y * size + j + 2] = colorp;
 			if (i >= size / 2 && (j - step <= i || j - step - 1 <= i))
-				game->mini_map[x * size + i][y * size + j] = colorp;
+				game->mini_map[x * size + i + 2][y * size + j + 2] = colorp;
 			j++;
 		}
 		if (i < size / 2 - 1)
@@ -210,9 +210,9 @@ void	draw_triangle_west(t_game *game, int x, int y, int colorp)
 		while (j < size)
 		{
 			if (i < size / 2 && j >= step)
-				game->mini_map[x * size + i][y * size + j] = colorp;
+				game->mini_map[x * size + i + 2][y * size + j + 2] = colorp;
 			if (i >= size / 2 && (i - j) <= (size / 2) - step)
-				game->mini_map[x * size + i][y * size + j] = colorp;
+				game->mini_map[x * size + i + 2][y * size + j + 2] = colorp;
 			j++;
 		}
 		if (i < size / 2 - 1)
@@ -275,6 +275,25 @@ void	draw_map(t_game *game, int i, int j)
 }
 */
 
+void	handle_outline(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < MINIMAP_SIZE * game->tile_size + 4)
+	{
+		j = 0;
+		while (j < MINIMAP_SIZE * game->tile_size + 4)
+		{
+			if (i <= 2 || j <= 2 || i >= MINIMAP_SIZE * game->tile_size + 2 || j >= MINIMAP_SIZE * game->tile_size + 2)
+				game->mini_map[i][j] = 0xFFFFFF;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw_map(t_game *game, int i, int j)
 {
 	int		tile_size;
@@ -292,6 +311,7 @@ void	draw_map(t_game *game, int i, int j)
 		}
 		i++;
 	}
+	handle_outline(game);
 	print_image(game->mini_map, game, tile_size);
-	free_star(game->mini_map, MINIMAP_SIZE * tile_size);
+	free_star(game->mini_map, MINIMAP_SIZE * tile_size + 4);
 }

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:11:14 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/04 04:10:48 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:59:40 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	draw_square(t_game *game, int x, int y, int color)
 	int	j;
 	int	size;
 
+	i = 0;
 	x = x - (int)game->player.y + 3;
 	y = y - (int)game->player.x + 3;
-	i = 0;
 	size = game->tile_size;
 	while (i < size)
 	{
@@ -117,8 +117,6 @@ void	draw_triangle_north(t_game *game, int x, int y, int colorp)
 	int	j;
 	int	size;
 
-	x = x - (int)game->player.y + 3;
-	y = y - (int)game->player.x + 3;
 	i = 0;
 	size = game->tile_size;	
 	while (i < size)
@@ -142,8 +140,6 @@ void	draw_triangle_south(t_game *game, int x, int y, int colorp)
 	int	j;
 	int	size;
 
-	x = x - (int)game->player.y + 3;
-	y = y - (int)game->player.x + 3;
 	i = 0;
 	size = game->tile_size;	
 	while (i < size)
@@ -166,22 +162,26 @@ void	draw_triangle_east(t_game *game, int x, int y, int colorp)
 	int	i;
 	int	j;
 	int	size;
+	int	step;
 
-	x = x - (int)game->player.y + 3;
-	y = y - (int)game->player.x + 3;
 	i = 0;
+	step = 0;
 	size = game->tile_size;	
 	while (i < size)
 	{
-		j = 0;
+		j = 0;	
 		while (j < size)
 		{
-			if (i < size / 2 && i >= j)
+			if (i < size / 2 && (j - step <= i || j - step - 1 <= i))
 				game->mini_map[x * size + i][y * size + j] = colorp;
-			if (i >= size / 2 && j + i <= size - 1)
+			if (i >= size / 2 && (j - step <= i || j - step - 1 <= i))
 				game->mini_map[x * size + i][y * size + j] = colorp;
 			j++;
 		}
+		if (i < size / 2 - 1)
+			step ++;
+		else
+			step -=3;
 		i++;
 	}
 }
@@ -191,28 +191,34 @@ void	draw_triangle_west(t_game *game, int x, int y, int colorp)
 	int	i;
 	int	j;
 	int	size;
+	int	step;
 
-	x = x - (int)game->player.y + 3;
-	y = y - (int)game->player.x + 3;
 	i = 0;
-	size = game->tile_size;	
+	size = game->tile_size;
+	step = size - 2;	
 	while (i < size)
 	{
 		j = 0;
 		while (j < size)
 		{
-			if (i >= size / 2 && i <= j)
+			if (i < size / 2 && j >= step)
 				game->mini_map[x * size + i][y * size + j] = colorp;
-			if (i < size / 2 && j + i >= size - 1)
+			if (i >= size / 2 && (i - j) <= (size / 2) - step)
 				game->mini_map[x * size + i][y * size + j] = colorp;
 			j++;
 		}
+		if (i < size / 2 - 1)
+			step -= 2;
+		else
+			step += 1;
 		i++;
 	}
 }
 
 void	draw_player(t_game *game, int x, int y, int colorp)
 {
+	x = x - (int)game->player.y + 3;
+	y = y - (int)game->player.x + 3;
 	if (game->player.dir_x >= sqrt(2) / 2)
 		draw_triangle_east(game, x, y, colorp);
 	if (game->player.dir_x <= -sqrt(2) / 2)

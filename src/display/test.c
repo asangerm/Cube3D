@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:11:14 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/04 18:59:40 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/04 23:26:14 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,20 +116,24 @@ void	draw_triangle_north(t_game *game, int x, int y, int colorp)
 	int	i;
 	int	j;
 	int	size;
+	int	step;
 
 	i = 0;
-	size = game->tile_size;	
+	size = game->tile_size;
+	step = size / 2 - 1;
 	while (i < size)
 	{
 		j = 0;
 		while (j < size)
 		{
-			if (j >= size / 2 && i >= j)
+			if (j < size / 2 && j - step >= 0)
 				game->mini_map[x * size + i][y * size + j] = colorp;
-			if (j < size / 2 && j + i >= size - 1)
+			if (j >= size / 2 && j + step <= size - 1)
 				game->mini_map[x * size + i][y * size + j] = colorp;
 			j++;
 		}
+		if (i % 2 == 1)
+			step --;
 		i++;
 	}
 }
@@ -139,20 +143,24 @@ void	draw_triangle_south(t_game *game, int x, int y, int colorp)
 	int	i;
 	int	j;
 	int	size;
+	int	step;
 
 	i = 0;
+	step = 0;
 	size = game->tile_size;	
 	while (i < size)
 	{
 		j = 0;
 		while (j < size)
 		{
-			if (j < size / 2 && i <= j)
+			if (j < size / 2 && j >= step)
 				game->mini_map[x * size + i][y * size + j] = colorp;
-			if (j >= size / 2 && j + i <= size - 1)
+			if (j >= size / 2 && j <= size - 1 - step)
 				game->mini_map[x * size + i][y * size + j] = colorp;
 			j++;
 		}
+		if (i % 2 == 1)
+			step++;
 		i++;
 	}
 }

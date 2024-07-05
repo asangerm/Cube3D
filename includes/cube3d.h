@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/04 21:40:30 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/05 18:23:48 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define WINDOW_HEIGHT 480
 # define MINIMAP_SIZE 7
 
-# define MOVE_SPEED 0.03
+# define MOVE_SPEED 0.02
 # define COEFF_MOUSE_ROTA 10000.0
 
 # define K_UP 119
@@ -63,6 +63,8 @@ typedef struct s_info
 	char		*so_path;
 	char		*we_path;
 	char		*ea_path;
+	char		*cd_path;
+	char		*od_path;
 	int			*f_color;
 	int			*c_color;
 }		t_info;
@@ -135,6 +137,8 @@ typedef struct s_textures
 	t_image	no;
 	t_image	we;
 	t_image	ea;
+	t_image	cd;
+	t_image	od;
 }		t_textures;
 
 typedef struct s_game
@@ -147,9 +151,9 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_textures	textures;
-	// int			last_x;
-	// int			is_rota_stopping;
-	double		move_speed;
+	int			last_x;
+	int			is_rota_stopping;
+	double		ms_rota;
 	double		previous_time;
 	double		current_time;
 	int			frame_count;
@@ -269,7 +273,7 @@ void	get_textures(t_game *game, t_info *info, char *line, int j);
 
 /* textures_2.c */
 void	create_suite(t_game *game);
-void	init_textures_game(t_game *game);
+void	init_textures_game(t_image *img);
 void	create_mlx_textures(t_game *game);
 void	init_textures(t_game *game, t_ray *ray);
 void	handle_textures(t_game *game, t_ray *ray, int x);

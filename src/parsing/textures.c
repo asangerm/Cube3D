@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:38:33 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/20 20:53:02 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:09:02 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void	get_textures(t_game *game, t_info *info, char *line, int j)
 		info->we_path = get_path(line, j + 2);
 	else if (line[j] == 'E' && line[j + 1] == 'A' && !(info->ea_path))
 		info->ea_path = get_path(line, j + 2);
+	else if (line[j] == 'C' && line[j + 1] == 'D' && !(info->cd_path))
+		info->cd_path = get_path(line, j + 2);
+	else if (line[j] == 'O' && line[j + 1] == 'D' && !(info->od_path))
+		info->od_path = get_path(line, j + 2);
 	else
 		ft_error(game, INVALID_TEXT);
 }

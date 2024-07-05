@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:24:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/03 15:30:39 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:17:13 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	free_texture(t_game *game, t_textures *text)
 		mlx_destroy_image(game->mlx, text->so.img);
 	if (text->no.img)
 		mlx_destroy_image(game->mlx, text->no.img);
+	if (text->cd.img)
+		mlx_destroy_image(game->mlx, text->cd.img);
+	if (text->od.img)
+		mlx_destroy_image(game->mlx, text->od.img);
 }
 
 void	print_img_ray(int **tab_img, t_game *game)

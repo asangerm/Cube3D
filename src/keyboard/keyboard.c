@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:49:50 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/05 00:31:43 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:31:07 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,53 +29,21 @@
 // 	}
 // }
 
-// int	mouse_move(int x, int y, t_game *game)
-// {
-// 	(void) y;
-// 	ft_printf("x : %d\n",x);
-// 	ft_printf("last_x : %d\n",game->last_x);
-// 	if (x == game->last_x)
-//         return (0);
-// 	handle_cursor_limit(game, x, y);
-// 	if (x < game->last_x)
-// 		game->player.rota = -1;
-// 	else if (x > game->last_x)
-// 		game->player.rota = 1;
-// 	game->last_x = x;
-// 	game->is_rota_stopping = 1;
-// 	return (0);
-// }
-
 int	mouse_move(int x, int y, t_game *game)
 {
-	int		diff_x;
-	int		limit;
-	// double	ms;
-	
-	if (x > (WINDOW_WIDTH / 2) + 20)
-		limit = (WINDOW_WIDTH / 2) + 20;
-	else if (x < (WINDOW_WIDTH / 2) - 20)
-		limit = (WINDOW_WIDTH / 2) - 20;
-	else
-		limit = x;
+	(void) y;
+	int	mid_width;
 
-	
-	diff_x = x - limit;
-	// ft_printf("x = %d\n", x);
-	// ft_printf("diff = %d\n", diff_x);
-	if (diff_x < 0)
+	mid_width = (WINDOW_WIDTH / 2);
+	if (x - mid_width == 0)
+        return (0);
+	if (x - mid_width < 0)
 		game->player.rota = -1;
-	else if (diff_x > 0)
+	else if (x - mid_width > 0)
 		game->player.rota = 1;
-	else
-		game->player.rota = 0;
-	if (x >= WINDOW_WIDTH - 20 || x <= 20)
-		game->player.rota = 0;
-	else if (y > WINDOW_HEIGHT - 50 || y < 50)
-		game->player.rota = 0;
-	game->move_speed = abs(diff_x) / COEFF_MOUSE_ROTA;
-	printf("ms = %f\n",(double) (abs(diff_x) / COEFF_MOUSE_ROTA));
-	
+	// game->ms_rota = 0.02;
+	mlx_mouse_move(game->mlx, game->win, mid_width, WINDOW_HEIGHT / 2);
+	game->is_rota_stopping = 1;
 	return (0);
 }
 
@@ -129,11 +97,11 @@ int	key_hook(t_game *game)
 		move_right(game);
 	if (game->player.rota != 0)
 		rotate(game);
-	// if (game->is_rota_stopping == 1)
-	// {
-	// 	game->player.rota = 0;
-	// 	game->is_rota_stopping = 0;
-	// }
+	if (game->is_rota_stopping == 1)
+	{
+		game->player.rota = 0;
+		game->is_rota_stopping = 0;
+	}
 	draw(game);
 	return (0);
 }

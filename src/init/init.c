@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/04 21:35:14 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/05 18:29:37 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	init_info(t_info *info)
 	info->so_path = NULL;
 	info->we_path = NULL;
 	info->ea_path = NULL;
+	info->cd_path = NULL;
+	info->od_path = NULL;
 	info->c_color = NULL;
 	info->f_color = NULL;
 }
@@ -62,10 +64,16 @@ void	init(t_game *game)
 	game->fps = 0;
 	game->frame_count = 0;
 	game->current_time = 0.0;
-	game->move_speed = 0.03;
-	// game->is_rota_stopping = 1;
+	game->ms_rota = 0.03;
+	game->is_rota_stopping = 1;
 	game->mlx = NULL;
 	game->win = NULL;
 	init_map(&game->map);
 	init_player(&game->player);
+	init_textures_game(&game->textures.so);
+	init_textures_game(&game->textures.no);
+	init_textures_game(&game->textures.ea);
+	init_textures_game(&game->textures.we);
+	init_textures_game(&game->textures.cd);
+	init_textures_game(&game->textures.od);
 }

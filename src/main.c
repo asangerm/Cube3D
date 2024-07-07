@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 18:28:24 by asangerm          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/05 02:47:45 by asangerm         ###   ########.fr       */
+=======
+/*   Updated: 2024/07/05 18:31:43 by nfradet          ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +21,17 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 	
-	// game.last_x = WINDOW_WIDTH / 2;
 	init(&game);
 	parsing(&game, argc, argv);
 	game.mlx = mlx_init();
 	game.previous_time = get_time_in_seconds();
 	if (!game.mlx)
 		return (0);
+	create_mlx_textures(&game);
 	game.win = mlx_new_window(game.mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT + MINIMAP_SIZE * 20 + 4, WINDOW_NAME);
 	if (!game.win)
 		return (0);
-	create_mlx_textures(&game);
 	draw(&game);
 	mlx_mouse_move(game.mlx, game.win, 60, 60);
 	mlx_mouse_hide(game.mlx, game.win);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 20:10:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/06/26 22:21:10 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:26:46 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_char(t_game *game, char **map)
 				j++;
 			if (map[i][j])
 			{
-				if (!(ft_strchr("10NSEW", map[i][j])))
+				if (!(ft_strchr("10NSEWCO", map[i][j])))
 					ft_error(game, INVALID_MAP);
 				if (ft_strchr("NSEW", map[i][j]) && game->player.face_to != '0')
 					ft_error(game, INVALID_MAP);

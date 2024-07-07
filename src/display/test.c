@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:11:14 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/05 00:48:24 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:16:02 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,8 @@ void	handle_drawing(t_game *game, int i, int j)
 			draw_square(game, i, j, 0xA9A9A9);
 		else if (game->map.real_map[i][j] == '1')
 			draw_square(game, i, j, 0x808080);
+		else if (game->map.real_map[i][j] == 'C')
+			draw_square(game, i, j, 0x643603);
 		else
 			draw_square(game, i, j, 0x000000);
 		if ((int)(game->player.x) == j && (int)(game->player.y) == i)

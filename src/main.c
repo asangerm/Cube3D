@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 18:28:24 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/05 00:51:09 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/05 02:47:45 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		return (0);
 	create_mlx_textures(&game);
 	draw(&game);
+	mlx_mouse_move(game.mlx, game.win, 60, 60);
 	mlx_mouse_hide(game.mlx, game.win);
 	mlx_hook(game.win, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.win, 3, 1L << 1, key_release, &game);

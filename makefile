@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
+#    By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/07/08 17:54:02 by asangerm         ###   ########.fr        #
+#    Updated: 2024/07/08 22:29:18 by nfradet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,33 +28,34 @@ LIB_DIR	=	libft/
 MLX_DIR	=	minilibx-linux/
 
 # .c and .o files
-PARSING		=	parsing.c		\
-				parsing_utils.c	\
-				map.c			\
-				map_checker.c	\
-				map_checker_2.c	\
-				colors.c		\
-				textures.c		\
-				textures_2.c
-DISPLAY		=	minimap.c		\
-				draw_utils.c	\
-				floor_ceil.c	\
-				player_icon.c	\
-				drawing.c		\
-				raycasting.c	\
-				fps.c
-INIT		=	init.c			\
-				init_2.c
 PLAYER		=	player.c
-KEYBOARD	=	keyboard.c		\
+PARSING		=	parsing.c			\
+				parsing_utils.c		\
+				map.c				\
+				map_checker.c		\
+				map_checker_2.c		\
+				colors.c			\
+				textures.c			\
+				textures_2.c
+DISPLAY		=	minimap.c			\
+				draw_utils.c		\
+				floor_ceil.c		\
+				player_icon.c		\
+				drawing.c			\
+				raycasting.c		\
+				raycasting_utils.c	\
+				fps.c
+INIT		=	init.c				\
+				init_2.c	
+KEYBOARD	=	keyboard.c			\
 				move.c
 ENDING		=	ending.c	
-SRC			=	$(PARSING)	\
-				$(INIT)		\
-				$(KEYBOARD)	\
-				$(DISPLAY)	\
-				$(PLAYER)	\
-				$(ENDING)	\
+SRC			=	$(PARSING)			\
+				$(INIT)				\
+				$(KEYBOARD)			\
+				$(DISPLAY)			\
+				$(PLAYER)			\
+				$(ENDING)			\
 				main.c
 OBJ			=	$(SRC:%.c=$(OBJ_DIR)%.o)
 

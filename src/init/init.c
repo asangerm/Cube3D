@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 04:55:10 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:10:38 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	init(t_game *game)
 	game->current_time = 0.0;
 	game->ms_rota = 0.03;
 	game->is_rota_stopping = 1;
+	game->lst_ray = NULL;
 	game->mlx = NULL;
 	game->win = NULL;
 	init_map(&game->map);

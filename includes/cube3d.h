@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 17:53:46 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:41:32 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_textures	textures;
+	t_list		*lst_ray;
 	int			last_x;
 	int			is_rota_stopping;
 	double		ms_rota;
@@ -194,7 +195,7 @@ void	set_pixel(t_image *image, int y, int x, int color);
 int		draw(t_game *game);
 int		color_change(int *color);
 void	print_img_ray(int **text, t_game *game);
-void	draw_line(t_ray *ray, t_game *game, int x);
+void	draw_line(t_game *game, int x);
 void	free_texture(t_game *game, t_textures *text);
 
 /* floor_ceil.c */
@@ -225,8 +226,11 @@ void	draw_triangle_south(t_game *game, int x, int y, int colorp);
 void	raycasting(t_game *game);
 void	dda(t_game *game, t_ray *ray);
 void	init_dda(t_ray *ray, t_player *player);
-void	wall_height(t_ray *ray, t_player *player);
 void	init_raycasting(int x, t_ray *ray, t_player *player);
+
+/* raycasting_utils.c */
+void	add_door_ray(t_game *game, t_ray *ray);
+void	wall_height(t_game *game, t_ray *ray, t_player *player);
 
 /*-------------------- ending --------------------*/
 

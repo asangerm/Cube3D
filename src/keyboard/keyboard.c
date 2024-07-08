@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:49:50 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 06:10:04 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:54:02 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
-
-// void	handle_cursor_limit(t_game *game, int x, int y)
-// {
-// 	(void) y;
-// 	if (x > WINDOW_WIDTH - 20)
-// 	{
-// 		x = 20;
-// 		mlx_mouse_move(game->mlx, game->win,
-//			WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-// 		game->last_x = x;
-// 	}
-// 	else if (x < 20)
-// 	{
-// 		x = WINDOW_WIDTH - 20;
-// 		mlx_mouse_move(game->mlx, game->win, 
-//			WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-// 		game->last_x = x;
-// 	}
-// }
 
 int	mouse_move(int x, int y, t_game *game)
 {

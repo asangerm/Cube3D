@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:24:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 04:59:32 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:42:28 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,27 @@ int	color_change(int *color)
 	return (res);
 }
 
-void	draw_line(t_ray *ray, t_game *game, int x)
+void	draw_line(t_game *game, int x)
 {
 	int		i;
+	t_list	*iter;
+	t_ray	*cur_ray;
 
-	i = 0;
-	init_textures(game, ray);
-	while (i < GAME_HEIGHT)
+	iter = game->lst_ray;
+	while (iter != NULL)
 	{
-		if (i >= ray->start && i <= ray->end)
+		i = 0;
+		cur_ray = (t_ray *)iter->content;
+		while (i < GAME_HEIGHT)
 		{
-			handle_textures(game, ray, x);
-			i = ray->end;
+			if (i >= cur_ray->start && i <= cur_ray->end)
+			{
+				handle_textures(game, cur_ray, x);
+				i = cur_ray->end;
+			}
+			i++;
 		}
-		i++;
+		iter = iter->next;
 	}
 }
 

@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   textures_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:31:18 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/08 17:44:15 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:16:27 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
-
-void	handle_textures(t_game *game, t_ray *ray, int x)
-{
-	int		y;
-	double	tex_pos;
-	int		tex_y;
-
-	tex_pos = 0;
-	tex_pos = (ray->start - GAME_HEIGHT / 2 + ray->height / 2) * ray->step;
-	y = ray->start;
-	while (y <= ray->end)
-	{
-		tex_y = (int)tex_pos & (ray->image.height - 1);
-		tex_pos += ray->step;
-		game->tab_img[y][x]
-			= ray->image.data[ray->image.height * tex_y + ray->tex_x];
-		y++;
-	}
-}
 
 void	create_suite_suite(t_game *game)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_utils.c                                       :+:      :+:    :+:   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:08:46 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 17:39:45 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:18:09 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,25 @@ void	set_pixel(t_image *image, int y, int x, int color)
 
 	p = y * (image->size_line / 4) + x;
 	image->data[p] = color;
+}
+
+void	handle_textures(t_game *game, t_ray *ray, int x)
+{
+	int		y;
+	double	tex_pos;
+	int		tex_y;
+	int		color;
+
+	tex_pos = 0;
+	tex_pos = (ray->start - GAME_HEIGHT / 2 + ray->height / 2) * ray->step;
+	y = ray->start;
+	while (y <= ray->end)
+	{
+		tex_y = (int)tex_pos & (ray->image.height - 1);
+		tex_pos += ray->step;
+		color = ray->image.data[ray->image.height * tex_y + ray->tex_x];
+		if (color >= 0)
+			game->tab_img[y][x] = color;
+		y++;
+	}
 }

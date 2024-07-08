@@ -3,34 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 17:52:39 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:45:17 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	wall_height(t_ray *ray, t_player *player)
+static void	init_side_ray(t_ray *ray)
 {
-	(void) player;
-	if (ray->side == 0)
-		ray->dist_w = (ray->side_x - ray->delta_x);
+	if (ray->side_x < ray->side_y)
+	{
+		ray->side_x += ray->delta_x;
+		ray->map_x += ray->step_x;
+		ray->side = 0;
+	}
 	else
-		ray->dist_w = (ray->side_y - ray->delta_y);
-	ray->height = (int)(GAME_HEIGHT / ray->dist_w);
-	ray->start = -(ray->height) / 2 + GAME_HEIGHT / 2;
-	if (ray->start < 0)
-		ray->start = 0;
-	ray->end = ray->height / 2 + GAME_HEIGHT / 2;
-	if (ray->end >= GAME_HEIGHT)
-		ray->end = GAME_HEIGHT - 1;
-	if (ray->side == 0)
-		ray->wall_x = player->y + ray->dist_w * ray->dir_y;
-	else
-		ray->wall_x = player->x + ray->dist_w * ray->dir_x;
-	ray->wall_x -= floor(ray->wall_x);
+	{
+		ray->side_y += ray->delta_y;
+		ray->map_y += ray->step_y;
+		ray->side = 1;
+	}
 }
 
 void	dda(t_game *game, t_ray *ray)
@@ -40,24 +35,15 @@ void	dda(t_game *game, t_ray *ray)
 	hit = 0;
 	while (hit == 0)
 	{
-		if (ray->side_x < ray->side_y)
-		{
-			ray->side_x += ray->delta_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_y += ray->delta_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
-		}
+		init_side_ray(ray);
 		if (ray->map_y < 0.25
 			|| ray->map_y < 0.25
 			|| ray->map_y > game->map.height - 0.25
 			|| ray->map_x > game->map.width - 1.25)
 			break ;
-		else if (game->map.real_map[ray->map_y][ray->map_x] > '0')
+		if (game->map.real_map[ray->map_y][ray->map_x] == 'O')
+			add_door_ray(game, ray);
+		else if (strchr("1C", game->map.real_map[ray->map_y][ray->map_x]))
 			hit = 1;
 	}
 }
@@ -101,20 +87,25 @@ void	init_raycasting(int x, t_ray *ray, t_player *player)
 void	raycasting(t_game *game)
 {
 	t_player	*player;
-	t_ray		ray;
+	t_list		*new;
+	t_ray		*ray;
 	int			x;
 
+	ray = malloc(sizeof(t_ray));
 	floor_ceiling(game);
 	player = &(game->player);
 	player_start(player);
 	x = 0;
 	while (x < GAME_WIDTH)
 	{
-		init_raycasting(x, &ray, player);
-		init_dda(&ray, player);
-		dda(game, &ray);
-		wall_height(&ray, player);
-		draw_line(&ray, game, x);
+		game->lst_ray = NULL;
+		init_raycasting(x, ray, player);
+		init_dda(ray, player);
+		dda(game, ray);
+		wall_height(game, ray, player);
+		new = ft_lstnew((void *)ray);
+		ft_lstadd_front(&game->lst_ray, new);
+		draw_line(game, x);
 		x++;
 	}
 	print_img_ray(game->tab_img, game);

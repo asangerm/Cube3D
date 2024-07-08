@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 06:04:22 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:53:46 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,11 @@ typedef struct s_game
 
 /*-------------------- display --------------------*/
 
+/* draw_utils.c */
+int		get_sign(double nb);
+void	free_star(int **tab, int h);
+void	set_pixel(t_image *image, int y, int x, int color);
+
 /* drawing.c */
 int		draw(t_game *game);
 int		color_change(int *color);
@@ -192,9 +197,29 @@ void	print_img_ray(int **text, t_game *game);
 void	draw_line(t_ray *ray, t_game *game, int x);
 void	free_texture(t_game *game, t_textures *text);
 
+/* floor_ceil.c */
+void	floor_ceiling(t_game *game);
+void	init_floor_ceiling_texture(t_game *game, t_ray *ray);
+void	print_floor_ceiling(t_game *game, t_ray *ray, int y);
+void	init_floor_ceiling(int y, t_ray *ray, t_player *player);
+
 /* fps.c */
 double	get_time_in_seconds(void);
 void	calculate_and_display_fps(t_game *game);
+
+/* minimap.c */
+void	handle_outline(t_game *game);
+void	draw_map(t_game *game, int i, int j);
+void	handle_drawing(t_game *game, int i, int j);
+void	draw_square(t_game *game, int x, int y, int color);
+void	print_image(int **mini_map, t_game *game, int tile_size);
+
+/* player_icon.c */
+void	draw_player(t_game *game, int x, int y, int colorp);
+void	draw_triangle_east(t_game *game, int x, int y, int colorp);
+void	draw_triangle_west(t_game *game, int x, int y, int colorp);
+void	draw_triangle_north(t_game *game, int x, int y, int colorp);
+void	draw_triangle_south(t_game *game, int x, int y, int colorp);
 
 /* raycasting.c */
 void	raycasting(t_game *game);
@@ -202,16 +227,6 @@ void	dda(t_game *game, t_ray *ray);
 void	init_dda(t_ray *ray, t_player *player);
 void	wall_height(t_ray *ray, t_player *player);
 void	init_raycasting(int x, t_ray *ray, t_player *player);
-
-/* test_utils.c */
-void	free_star(int **tab, int h);
-void	set_pixel(t_image *image, int y, int x, int color);
-
-/* test.c */
-void	draw_map(t_game *game, int i, int j);
-void	init_text(t_game *game, int tile_size);
-void	draw_square(t_game *game, int x, int y, int color);
-void	print_image(int **text, t_game *game, int tile_size);
 
 /*-------------------- ending --------------------*/
 
@@ -223,6 +238,11 @@ void	free_info(t_info *info);
 void	ft_error(t_game *game, char *str);
 
 /*-------------------- init --------------------*/
+
+/* init_2.c */
+void	init_textures_game(t_image *img);
+void	init_text(t_game *game, int tile_size);
+void	init_textures(t_game *game, t_ray *ray);
 
 /* init.c */
 void	init(t_game *game);
@@ -265,8 +285,8 @@ void	check_border(t_game *game, char **map, int i, int j);
 void	check_end(t_game *game);
 void	map_checker(t_game *game);
 void	check_char(t_game *game, char **map);
-void	check_position(t_game *game, char **map);
 void	check_player(t_game *game, char **map);
+void	check_position(t_game *game, char **map);
 
 /* map.c */
 void	map_extractor(t_game *game);
@@ -296,16 +316,15 @@ void	get_textures(t_game *game, t_info *info, char *line, int j);
 
 /* textures_2.c */
 void	create_suite(t_game *game);
-void	init_textures_game(t_image *img);
+void	create_suite_suite(t_game *game);
 void	create_mlx_textures(t_game *game);
-void	init_textures(t_game *game, t_ray *ray);
 void	handle_textures(t_game *game, t_ray *ray, int x);
 
 /*-------------------- player --------------------*/
 
 /* player.c */
-void	player_start_2(t_player *player);
 void	player_start(t_player *player);
+void	player_start_2(t_player *player);
 
 /*-------------------- src --------------------*/
 

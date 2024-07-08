@@ -6,18 +6,11 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:31:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 06:15:50 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:39:24 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
-
-int	get_sign(double nb)
-{
-	if (nb < 0)
-		return (-1);
-	return (1);
-}
 
 void	move_up(t_game *game)
 {

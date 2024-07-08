@@ -6,36 +6,11 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:31:18 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/08 06:07:37 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:44:15 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
-
-void	init_textures(t_game *game, t_ray *ray)
-{
-	if (game->map.real_map[ray->map_y][ray->map_x] == 'C')
-		ray->image = game->textures.cd;
-	if (game->map.real_map[ray->map_y][ray->map_x] == '1')
-	{
-		if (ray->side == 0)
-		{
-			if (ray->dir_x <= 0)
-				ray->image = game->textures.ea;
-			else
-				ray->image = game->textures.we;
-		}
-		else
-		{
-			if (ray->dir_y <= 0)
-				ray->image = game->textures.so;
-			else
-				ray->image = game->textures.no;
-		}
-	}
-	ray->tex_x = (int)(ray->wall_x * (double)ray->image.width);
-	ray->step = 1.0 * ray->image.height / ray->height;
-}
 
 void	handle_textures(t_game *game, t_ray *ray, int x)
 {
@@ -54,17 +29,6 @@ void	handle_textures(t_game *game, t_ray *ray, int x)
 			= ray->image.data[ray->image.height * tex_y + ray->tex_x];
 		y++;
 	}
-}
-
-void	init_textures_game(t_image *img)
-{
-	img->img = NULL;
-	img->height = 0;
-	img->width = 0;
-	img->data = NULL;
-	img->bpp = 0;
-	img->size_line = 0;
-	img->endian = 0;
 }
 
 void	create_suite_suite(t_game *game)

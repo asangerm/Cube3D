@@ -6,7 +6,7 @@
 #    By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/07/08 06:00:00 by asangerm         ###   ########.fr        #
+#    Updated: 2024/07/08 17:54:02 by asangerm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,15 @@ PARSING		=	parsing.c		\
 				colors.c		\
 				textures.c		\
 				textures_2.c
-DISPLAY		=	test.c			\
-				test_utils.c	\
+DISPLAY		=	minimap.c		\
+				draw_utils.c	\
+				floor_ceil.c	\
+				player_icon.c	\
 				drawing.c		\
 				raycasting.c	\
 				fps.c
-INIT		=	init.c
+INIT		=	init.c			\
+				init_2.c
 PLAYER		=	player.c
 KEYBOARD	=	keyboard.c		\
 				move.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/05 18:23:48 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/08 06:04:22 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@
 # define ERROR_EMOJI "\U000026D4"
 
 # define WINDOW_NAME "Cube 3D"
-# define WINDOW_WIDTH 640
-# define WINDOW_HEIGHT 480
+# define GAME_WIDTH 640
+# define GAME_HEIGHT 480
 # define MINIMAP_SIZE 7
+# define TILE_SIZE 20
+# define BORDER_SIZE 2
 
 # define MOVE_SPEED 0.02
 # define COEFF_MOUSE_ROTA 10000.0
@@ -65,6 +67,8 @@ typedef struct s_info
 	char		*ea_path;
 	char		*cd_path;
 	char		*od_path;
+	char		*fl_path;
+	char		*ce_path;
 	int			*f_color;
 	int			*c_color;
 }		t_info;
@@ -115,6 +119,23 @@ typedef struct s_ray
 	double	wall_x;//la coordonnee x ou le mur a ete touche
 	int		tex_x;//la coordonnee x de la texture
 	double	step;
+	double	dir_y0;//rayDir for leftmost ray (x = 0) and rightmost ray (x = w)
+	double	dir_x0;
+	double	dir_y1;
+	double	dir_x1;
+	int		p;//Current y position compared to the center of the screen
+	double	posz;//Vertical position of the camera.
+	double	row_dist;//Horizontal distance from the camera to the floor.
+	double	f_step_x;//the real world step vector we have to add for each x.
+	double	f_step_y;//adding step by step avoids multiplications with a weight
+	double	f_x;//real world coordinates of the leftmost column.
+	double	f_y;
+	int		cellx;//the cell coord is from the integer of floorX and floorY
+	int		celly;
+	int		t_x;//get the texture coordinate from the fractional part
+	int		t_y;
+	t_image	cimage;
+	t_image	fimage;
 	t_image	image;
 }		t_ray;
 
@@ -139,6 +160,8 @@ typedef struct s_textures
 	t_image	ea;
 	t_image	cd;
 	t_image	od;
+	t_image	floor;
+	t_image	ceiling;
 }		t_textures;
 
 typedef struct s_game

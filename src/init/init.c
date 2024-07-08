@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/05 18:29:37 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/08 04:55:10 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_info(t_info *info)
 	info->ea_path = NULL;
 	info->cd_path = NULL;
 	info->od_path = NULL;
+	info->ce_path = NULL;
+	info->fl_path = NULL;
 	info->c_color = NULL;
 	info->f_color = NULL;
 }
@@ -76,4 +78,6 @@ void	init(t_game *game)
 	init_textures_game(&game->textures.we);
 	init_textures_game(&game->textures.cd);
 	init_textures_game(&game->textures.od);
+	init_textures_game(&game->textures.ceiling);
+	init_textures_game(&game->textures.floor);
 }

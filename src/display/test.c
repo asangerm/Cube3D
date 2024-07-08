@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:11:14 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/05 19:16:02 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/08 06:20:13 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,6 @@ void	draw_square(t_game *game, int x, int y, int color)
 		i++;
 	}
 }
-/*
-void	init_text(t_game *game, t_map map, int tile_size)
-{
-	int	i;
-	int	j;
-
-	game->mini_map = malloc((map.height * tile_size + 1) * sizeof(game->mini_map));
-	i = 0;
-	while (i < map.height * tile_size)
-	{
-		game->mini_map[i] = malloc((map.width * tile_size + 1)
-				* sizeof(game->mini_map));
-		i++;
-	}
-	i = 0;
-	while (i < map.height * tile_size)
-	{
-		j = 0;
-		while(j < map.width * tile_size)
-		{
-			game->mini_map[i][j] = 0x000000;
-			j++;
-		}
-		i++;
-	}
-}
-*/
 
 void	init_text(t_game *game, int tile_size)
 {
@@ -70,14 +43,15 @@ void	init_text(t_game *game, int tile_size)
 	i = 0;
 	while (i < MINIMAP_SIZE * tile_size + 4)
 	{
-		game->mini_map[i] = malloc((MINIMAP_SIZE * tile_size + 4) * sizeof(int));
+		game->mini_map[i] = malloc((MINIMAP_SIZE * tile_size + 4)
+				* sizeof(int));
 		i++;
 	}
 	i = 0;
 	while (i < MINIMAP_SIZE * tile_size + 4)
 	{
 		j = 0;
-		while(j < MINIMAP_SIZE * tile_size + 4)
+		while (j < MINIMAP_SIZE * tile_size + 4)
 		{
 			game->mini_map[i][j] = 0x000000;
 			j++;
@@ -107,7 +81,8 @@ void	print_image(int **mini_map, t_game *game, int tile_size)
 		}
 		i++;
 	}
-	mlx_put_image_to_window(game->mlx, game->win, image.img, WINDOW_WIDTH / 2 - MINIMAP_SIZE * tile_size / 2, WINDOW_HEIGHT);
+	mlx_put_image_to_window(game->mlx, game->win,
+		image.img, GAME_WIDTH / 2 - MINIMAP_SIZE * tile_size / 2, GAME_HEIGHT);
 	mlx_destroy_image(game->mlx, image.img);
 }
 
@@ -147,7 +122,7 @@ void	draw_triangle_south(t_game *game, int x, int y, int colorp)
 
 	i = 0;
 	step = 0;
-	size = game->tile_size;	
+	size = game->tile_size;
 	while (i < size)
 	{
 		j = 0;
@@ -174,10 +149,10 @@ void	draw_triangle_east(t_game *game, int x, int y, int colorp)
 
 	i = 0;
 	step = 0;
-	size = game->tile_size;	
+	size = game->tile_size;
 	while (i < size)
 	{
-		j = 0;	
+		j = 0;
 		while (j < size)
 		{
 			if (i < size / 2 && (j - step <= i || j - step - 1 <= i))
@@ -189,7 +164,7 @@ void	draw_triangle_east(t_game *game, int x, int y, int colorp)
 		if (i < size / 2 - 1)
 			step ++;
 		else
-			step -=3;
+			step -= 3;
 		i++;
 	}
 }
@@ -203,7 +178,7 @@ void	draw_triangle_west(t_game *game, int x, int y, int colorp)
 
 	i = 0;
 	size = game->tile_size;
-	step = size - 2;	
+	step = size - 2;
 	while (i < size)
 	{
 		j = 0;
@@ -239,8 +214,9 @@ void	draw_player(t_game *game, int x, int y, int colorp)
 
 void	handle_drawing(t_game *game, int i, int j)
 {
-	if ( i >= (int)(game->player.y) - 3 && i <= (int)(game->player.y) + 3 && j >= (int)(game->player.x) - 3 && j <= (int)(game->player.x) + 3)
-	{	
+	if (i >= (int)(game->player.y) - 3 && i <= (int)(game->player.y) + 3
+	&& j >= (int)(game->player.x) - 3 && j <= (int)(game->player.x) + 3)
+	{
 		if (game->map.real_map[i][j] == '0')
 			draw_square(game, i, j, 0xA9A9A9);
 		else if (game->map.real_map[i][j] == '1')
@@ -254,29 +230,6 @@ void	handle_drawing(t_game *game, int i, int j)
 	}
 }
 
-/*
-void	draw_map(t_game *game, int i, int j)
-{
-	int		tile_size;
-
-	tile_size = 10;
-	game->tile_size = tile_size;
-	init_text(game, game->map, tile_size);
-	while (game->map.real_map[i])
-	{
-		j = 0;
-		while (game->map.real_map[i][j])
-		{
-			handle_drawing(game, i, j);
-			j++;
-		}
-		i++;
-	}
-	print_image(game->mini_map, game, tile_size);
-	free_star(game->mini_map, game->map.height * tile_size);
-}
-*/
-
 void	handle_outline(t_game *game)
 {
 	int	i;
@@ -288,7 +241,8 @@ void	handle_outline(t_game *game)
 		j = 0;
 		while (j < MINIMAP_SIZE * game->tile_size + 4)
 		{
-			if (i <= 2 || j <= 2 || i >= MINIMAP_SIZE * game->tile_size + 2 || j >= MINIMAP_SIZE * game->tile_size + 2)
+			if (i <= 2 || j <= 2 || i >= MINIMAP_SIZE * game->tile_size + 2
+				|| j >= MINIMAP_SIZE * game->tile_size + 2)
 				game->mini_map[i][j] = 0xFFFFFF;
 			j++;
 		}

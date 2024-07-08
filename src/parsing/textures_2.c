@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:31:18 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/05 19:33:32 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/08 06:07:37 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ void	handle_textures(t_game *game, t_ray *ray, int x)
 	int		tex_y;
 
 	tex_pos = 0;
-	tex_pos = (ray->start - WINDOW_HEIGHT / 2 + ray->height / 2) * ray->step;
+	tex_pos = (ray->start - GAME_HEIGHT / 2 + ray->height / 2) * ray->step;
 	y = ray->start;
 	while (y <= ray->end)
 	{
 		tex_y = (int)tex_pos & (ray->image.height - 1);
 		tex_pos += ray->step;
-		game->tab_img[y][x] = ray->image.data[ray->image.height * tex_y + ray->tex_x];
+		game->tab_img[y][x]
+			= ray->image.data[ray->image.height * tex_y + ray->tex_x];
 		y++;
 	}
 }
@@ -66,6 +67,27 @@ void	init_textures_game(t_image *img)
 	img->endian = 0;
 }
 
+void	create_suite_suite(t_game *game)
+{
+	game->textures.we.data = (int *)mlx_get_data_addr(game->textures.we.img,
+			&game->textures.we.bpp, &game->textures.we.size_line,
+			&game->textures.we.endian);
+	game->textures.cd.data = (int *)mlx_get_data_addr(game->textures.cd.img,
+			&game->textures.cd.bpp, &game->textures.cd.size_line,
+			&game->textures.cd.endian);
+	game->textures.od.data = (int *)mlx_get_data_addr(game->textures.od.img,
+			&game->textures.od.bpp, &game->textures.od.size_line,
+			&game->textures.od.endian);
+	game->textures.floor.data
+		= (int *)mlx_get_data_addr(game->textures.floor.img,
+			&game->textures.floor.bpp, &game->textures.floor.size_line,
+			&game->textures.floor.endian);
+	game->textures.ceiling.data
+		= (int *)mlx_get_data_addr(game->textures.ceiling.img,
+			&game->textures.ceiling.bpp, &game->textures.ceiling.size_line,
+			&game->textures.ceiling.endian);
+}
+
 void	create_suite(t_game *game)
 {
 	t_info	info;
@@ -74,6 +96,14 @@ void	create_suite(t_game *game)
 	game->textures.od.img = mlx_xpm_file_to_image(game->mlx, info.od_path,
 			&game->textures.od.width, &game->textures.od.height);
 	if (game->textures.od.img == NULL)
+		ft_error(game, LOADING_TEX);
+	game->textures.floor.img = mlx_xpm_file_to_image(game->mlx, info.fl_path,
+			&game->textures.floor.width, &game->textures.floor.height);
+	if (game->textures.floor.img == NULL)
+		ft_error(game, LOADING_TEX);
+	game->textures.ceiling.img = mlx_xpm_file_to_image(game->mlx, info.ce_path,
+			&game->textures.ceiling.width, &game->textures.ceiling.height);
+	if (game->textures.ceiling.img == NULL)
 		ft_error(game, LOADING_TEX);
 	game->textures.so.data = (int *)mlx_get_data_addr(game->textures.so.img,
 			&game->textures.so.bpp, &game->textures.so.size_line,
@@ -84,15 +114,7 @@ void	create_suite(t_game *game)
 	game->textures.ea.data = (int *)mlx_get_data_addr(game->textures.ea.img,
 			&game->textures.ea.bpp, &game->textures.ea.size_line,
 			&game->textures.ea.endian);
-	game->textures.we.data = (int *)mlx_get_data_addr(game->textures.we.img,
-			&game->textures.we.bpp, &game->textures.we.size_line,
-			&game->textures.we.endian);
-	game->textures.cd.data = (int *)mlx_get_data_addr(game->textures.cd.img,
-			&game->textures.cd.bpp, &game->textures.cd.size_line,
-			&game->textures.cd.endian);
-	game->textures.od.data = (int *)mlx_get_data_addr(game->textures.od.img,
-			&game->textures.od.bpp, &game->textures.od.size_line,
-			&game->textures.od.endian);
+	create_suite_suite(game);
 }
 
 void	create_mlx_textures(t_game *game)

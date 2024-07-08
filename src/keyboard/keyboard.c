@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:49:50 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/07 16:02:05 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 06:10:04 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,32 @@
 // 	if (x > WINDOW_WIDTH - 20)
 // 	{
 // 		x = 20;
-// 		mlx_mouse_move(game->mlx, game->win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+// 		mlx_mouse_move(game->mlx, game->win,
+//			WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 // 		game->last_x = x;
 // 	}
 // 	else if (x < 20)
 // 	{
 // 		x = WINDOW_WIDTH - 20;
-// 		mlx_mouse_move(game->mlx, game->win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+// 		mlx_mouse_move(game->mlx, game->win, 
+//			WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 // 		game->last_x = x;
 // 	}
 // }
 
 int	mouse_move(int x, int y, t_game *game)
 {
-	(void) y;
 	int	mid_width;
 
-	mid_width = (WINDOW_WIDTH / 2);
+	mid_width = (GAME_WIDTH / 2);
+	(void) y;
 	if (x - mid_width == 0)
-        return (0);
+		return (0);
 	if (x - mid_width < 0)
 		game->player.rota = -1;
 	else if (x - mid_width > 0)
 		game->player.rota = 1;
-	// game->ms_rota = 0.02;
-	mlx_mouse_move(game->mlx, game->win, mid_width, WINDOW_HEIGHT / 2);
+	mlx_mouse_move(game->mlx, game->win, mid_width, GAME_HEIGHT / 2);
 	game->is_rota_stopping = 1;
 	return (0);
 }

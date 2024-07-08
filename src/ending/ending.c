@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ending.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:59:35 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/05 18:14:23 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/08 05:08:12 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void	free_info(t_info *info)
 		free(info->od_path);
 	if (info->ea_path)
 		free(info->ea_path);
+	if (info->ce_path)
+		free(info->ce_path);
+	if (info->fl_path)
+		free(info->fl_path);
 	if (info->c_color)
 		free(info->c_color);
 	if (info->f_color)

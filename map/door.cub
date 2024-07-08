@@ -1,11 +1,11 @@
-NO textures/Brick.xpm
-SO textures/Brick.xpm
-WE textures/Brick.xpm
-EA textures/Brick.xpm
-CD textures/closed_door.xpm
-OD textures/open_door.xpm
-CE textures/Brick.xpm
-FL textures/Brick.xpm 
+NO textures/TECH.xpm
+SO textures/TECH.xpm
+WE textures/TECH.xpm
+EA textures/TECH.xpm
+CD textures/DOOR.xpm
+OD textures/DOOR.xpm
+CE textures/LIGHT.xpm
+FL textures/FLOOR.xpm 
 
 F 86,112,63
 C 35,54,76

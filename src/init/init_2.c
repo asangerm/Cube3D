@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:34:42 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 17:38:20 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:03:11 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	init_textures(t_game *game, t_ray *ray)
 {
 	if (game->map.real_map[ray->map_y][ray->map_x] == 'C')
 		ray->image = game->textures.cd;
+	if (game->map.real_map[ray->map_y][ray->map_x] == 'O')
+		ray->image = game->textures.od;
 	if (game->map.real_map[ray->map_y][ray->map_x] == '1')
 	{
 		if (ray->side == 0)

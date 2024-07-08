@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:41:24 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 17:45:29 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:05:10 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	handle_drawing(t_game *game, int i, int j)
 		else if (game->map.real_map[i][j] == '1')
 			draw_square(game, i, j, 0x808080);
 		else if (game->map.real_map[i][j] == 'C')
+			draw_square(game, i, j, 0x643603);
+		else if (game->map.real_map[i][j] == 'O')
 			draw_square(game, i, j, 0x643603);
 		else
 			draw_square(game, i, j, 0x000000);

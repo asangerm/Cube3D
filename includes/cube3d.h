@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 22:41:32 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/09 19:18:20 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,6 +293,7 @@ void	check_player(t_game *game, char **map);
 void	check_position(t_game *game, char **map);
 
 /* map.c */
+void	check_doors(t_game * game);
 void	map_extractor(t_game *game);
 void	get_map(t_game *game, char **map, int i);
 void	set_map(t_game *game, t_map *m, char **map, int w);

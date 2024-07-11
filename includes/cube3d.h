@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/09 19:18:20 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/11 17:21:46 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,8 @@ typedef struct s_game
 }		t_game;
 
 /*-------------------- display --------------------*/
+
+void	open_door(t_game *game);
 
 /* draw_utils.c */
 int		get_sign(double nb);

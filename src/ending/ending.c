@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:59:35 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 22:43:47 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/10 10:18:10 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	free_map(t_map *map)
 
 void	end(t_game *game)
 {
-	ft_lstclear(&game->lst_ray, free);
 	free_texture(game, &game->textures);
 	if (game->win != NULL)
 		mlx_destroy_window(game->mlx, game->win);

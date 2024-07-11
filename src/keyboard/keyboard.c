@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:49:50 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/11 16:52:40 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/11 22:35:19 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	mouse_move(int x, int y, t_game *game)
 
 int	key_press(int keycode, t_game *game)
 {
+	printf("key pressed %d\n", keycode);
 	if (keycode == K_ECHAP)
 		end(game);
 	if (keycode == K_LEFT_ARROW)
@@ -50,6 +51,7 @@ int	key_press(int keycode, t_game *game)
 
 int	key_release(int keycode, t_game *game)
 {
+	printf("key released %d\n", keycode);
 	if (keycode == K_ECHAP)
 		end(game);
 	if (keycode == K_UP && game->player.move_y == 1)

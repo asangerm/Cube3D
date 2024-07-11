@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:32:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/09 19:33:16 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/10 09:22:52 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,39 +76,50 @@ void	get_map(t_game *game, char **map, int i)
 	set_map(game, &game->map, game->map.real_map, i);
 }
 
-// int	check_y_axis(t_game *game, int i, int j)
-// {
-// 	char	**map;
-// 	int		is_wall;
+int	check_corridor(t_game *game, int i, int j)
+{
+	char	**map;
 
-// 	map = game->map.real_map;
-// 	if (map[i + 1][j] == 1)
-// 		is_wall = 1;
-// 	else
-// 		is_wall = 0;
-// 	if (map[i - 1][j] == 1)
-// 		is_wall = 1;
-// }
+	map = game->map.real_map;
+	if (ft_strchr("10", map[i + 1][j]) == NULL)
+		return (0);
+	if (ft_strchr("10", map[i - 1][j]) == NULL)
+		return (0);
+	if (ft_strchr("10", map[i][j + 1]) == NULL)
+		return (0);
+	if (ft_strchr("10", map[i][j - 1]) == NULL)
+		return (0);
+	if (map[i][j + 1] == map[i + 1][j])
+		return (0);
+	if (map[i][j - 1] == map[i + 1][j])
+		return (0);
+	if (map[i][j + 1] == map[i - 1][j])
+		return (0);
+	if (map[i][j - 1] == map[i - 1][j])
+		return (0);
+	return (1);
+}
 
-// void	check_doors(t_game * game)
-// {
-// 	int	i;
-// 	int	j;
+void	check_doors(t_game *game)
+{
+	int	i;
+	int	j;
 
-// 	i = 0;
-// 	while (game->map.real_map[i])
-// 	{
-// 		j = 0;
-// 		while (game->map.real_map[i][j] != '\0')
-// 		{
-// 			if (game->map.real_map[i][j] == 'O')
-// 				game->map.real_map[i][j] = 'C';
-// 			if (game->map.real_map[i][j] == 'C')
-// 			{
-				
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (game->map.real_map[i])
+	{
+		j = 0;
+		while (game->map.real_map[i][j] != '\0')
+		{
+			if (game->map.real_map[i][j] == 'O')
+				game->map.real_map[i][j] = 'C';
+			if (game->map.real_map[i][j] == 'C')
+			{
+				if (check_corridor(game, i, j) == 0)
+					ft_error(game, INVALID_DOOR);
+			}
+			j++;
+		}
+		i++;
+	}
+}

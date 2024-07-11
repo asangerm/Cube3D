@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 22:24:46 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/11 17:22:27 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/11 22:34:21 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	add_door_ray(t_game *game, t_ray *ray)
 	opdoor_ray->camera_x = ray->camera_x;
 	opdoor_ray->cellx = ray->cellx;
 	opdoor_ray->celly = ray->celly;
-	opdoor_ray->delta_x = ray->delta_x;
-	opdoor_ray->delta_y = ray->delta_y;
 	opdoor_ray->side = ray->side;
 	opdoor_ray->side = ray->side;
 	opdoor_ray->side_x = ray->side_x;
@@ -32,7 +30,9 @@ void	add_door_ray(t_game *game, t_ray *ray)
 	opdoor_ray->map_y = ray->map_y;
 	opdoor_ray->dir_x = ray->dir_x;
 	opdoor_ray->dir_y = ray->dir_y;
+	opdoor_ray->delta_x = ray->delta_x;
 	opdoor_ray->step_x = ray->step_x;
+	opdoor_ray->delta_y = ray->delta_y;
 	opdoor_ray->step_y = ray->step_y;
 	wall_height(game, opdoor_ray, &game->player);
 	new = ft_lstnew((void *)opdoor_ray);

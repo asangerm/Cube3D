@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/10 22:17:10 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/11 22:36:08 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	dda(t_game *game, t_ray *ray)
 	int	hit;
 
 	hit = 0;
-	ray->ray_type = 1;
 	while (hit == 0)
 	{
 		init_side_ray(ray);

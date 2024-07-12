@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 22:45:17 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/12 19:46:52 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,52 @@ void	init_raycasting(int x, t_ray *ray, t_player *player)
 	ray->delta_y = fabs(1 / ray->dir_y);
 }
 
+int	darken_color(int color, double weight)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (int)(((color >> 16) & 0xFF) * weight);
+	g = (int)(((color >> 8) & 0xFF) * weight);
+	b = (int)((color & 0xFF) * weight);
+	if (r > 255)
+		r = 255;
+	if (g > 255)
+		g = 255;
+	if (b > 255)
+		b = 255;
+	return (r << 16) | (g << 8) | b;
+}
+
+double	power(double n)
+{
+	return (n * n);
+}
+
+void	dark_circle(t_game *game)
+{
+	int		i;
+	int		j;
+	double	dist;
+	double	max_dist;
+
+	i = 0;
+	max_dist = sqrt(power(0 - GAME_WIDTH / 2) + power(0 - GAME_HEIGHT / 2));
+	while (i < GAME_HEIGHT)
+	{
+		j = 0;
+		while (j < GAME_WIDTH)
+		{
+			dist = sqrt(power(j - GAME_WIDTH / 2) + power(i - GAME_HEIGHT / 2));
+			dist = 0.05 + (1.0 - 0.05) * power(1 - (dist / max_dist));
+			game->tab_img[i][j] = darken_color(game->tab_img[i][j], dist);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	raycasting(t_game *game)
 {
 	t_player	*player;
@@ -108,6 +154,7 @@ void	raycasting(t_game *game)
 		draw_line(game, x);
 		x++;
 	}
+	dark_circle(game);
 	print_img_ray(game->tab_img, game);
 	draw_map(game, 0, 0);
 	calculate_and_display_fps(game);

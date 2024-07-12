@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:07:18 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/12 16:15:09 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:16:56 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	close_door_if(t_game *game)
 {
 	char	**map;
-	int     x;
-	int	    y;
+	int		x;
+	int		y;
 
 	x = 0;
 	map = game->map.real_map;

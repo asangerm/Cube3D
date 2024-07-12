@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/12 16:13:18 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:23:14 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # define BORDER_SIZE 2
 
 # define MOVE_SPEED 0.02
-# define COEFF_MOUSE_ROTA 10000.0
 
 # define K_UP 119
 # define K_DOWN 115

@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 22:24:46 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/11 22:34:21 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/12 15:51:49 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ void	wall_height(t_game *game, t_ray *ray, t_player *player)
 		ray->dist_w = (ray->side_x - ray->delta_x);
 	else
 		ray->dist_w = (ray->side_y - ray->delta_y);
+	if (ft_strchr("CO", game->map.real_map[ray->map_y][ray->map_x]))
+	{
+		if (ray->side == 0)
+			ray->dist_w = (ray->side_x - ray->delta_x / 2);
+		else
+			ray->dist_w = (ray->side_y - ray->delta_y / 2);
+	}
 	ray->height = (int)(GAME_HEIGHT / ray->dist_w);
 	ray->start = -(ray->height) / 2 + GAME_HEIGHT / 2;
 	if (ray->start < 0)

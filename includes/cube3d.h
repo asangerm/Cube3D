@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/11 22:34:58 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:13:18 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,6 @@ typedef struct s_game
 
 /*-------------------- display --------------------*/
 
-void	open_door(t_game *game);
-
 /* draw_utils.c */
 int		get_sign(double nb);
 void	free_star(int **tab, int h);
@@ -261,6 +259,10 @@ void	init_info(t_info *info);
 void	init_player(t_player *player);
 
 /*-------------------- keyboard --------------------*/
+
+/* door_handler */
+void	open_door(t_game *game);
+void	close_door_if(t_game *game);
 
 /* keyboard.c */
 int		key_hook(t_game *game);

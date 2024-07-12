@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/11 17:21:46 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:23:14 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@
 # define BORDER_SIZE 2
 
 # define MOVE_SPEED 0.02
-# define COEFF_MOUSE_ROTA 10000.0
 
 # define K_UP 119
 # define K_DOWN 115
 # define K_LEFT 97
 # define K_RIGHT 100
+# define K_SPACE 32
 # define K_ECHAP 65307
 # define K_RIGHT_ARROW 65363
 # define K_LEFT_ARROW 65361
@@ -58,6 +58,7 @@
 # define INVALID_TEXT "Invalid texture in file "
 # define INVALID_COLOR "Invalid color in file"
 # define INVALID_MAP "Invalid map in file"
+# define INVALID_DOOR "Door not correctly placed"
 
 typedef struct s_info
 {
@@ -96,6 +97,7 @@ typedef struct s_player
 	int			move_x;//Direction déplacement x
 	int			move_y;//Direction déplacement y
 	int			rota;//Sens de rotation
+	int			open_door;//indique si il essaie d'ouvrir une porte
 }		t_player;
 
 typedef struct s_ray
@@ -186,8 +188,6 @@ typedef struct s_game
 
 /*-------------------- display --------------------*/
 
-void	open_door(t_game *game);
-
 /* draw_utils.c */
 int		get_sign(double nb);
 void	free_star(int **tab, int h);
@@ -228,7 +228,8 @@ void	draw_triangle_south(t_game *game, int x, int y, int colorp);
 void	raycasting(t_game *game);
 void	dda(t_game *game, t_ray *ray);
 void	init_dda(t_ray *ray, t_player *player);
-void	init_raycasting(int x, t_ray *ray, t_player *player);
+t_ray	*init_raycasting(int x, t_player *player);
+
 
 /* raycasting_utils.c */
 void	add_door_ray(t_game *game, t_ray *ray);
@@ -253,11 +254,14 @@ void	init_textures(t_game *game, t_ray *ray);
 /* init.c */
 void	init(t_game *game);
 void	init_map(t_map *map);
-void	init_ray(t_ray *ray);
 void	init_info(t_info *info);
 void	init_player(t_player *player);
 
 /*-------------------- keyboard --------------------*/
+
+/* door_handler */
+void	open_door(t_game *game);
+void	close_door_if(t_game *game);
 
 /* keyboard.c */
 int		key_hook(t_game *game);

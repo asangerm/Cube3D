@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 22:24:46 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/11 17:22:27 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:03:17 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	add_door_ray(t_game *game, t_ray *ray)
 	opdoor_ray->camera_x = ray->camera_x;
 	opdoor_ray->cellx = ray->cellx;
 	opdoor_ray->celly = ray->celly;
-	opdoor_ray->delta_x = ray->delta_x;
-	opdoor_ray->delta_y = ray->delta_y;
 	opdoor_ray->side = ray->side;
 	opdoor_ray->side = ray->side;
 	opdoor_ray->side_x = ray->side_x;
@@ -32,7 +30,9 @@ void	add_door_ray(t_game *game, t_ray *ray)
 	opdoor_ray->map_y = ray->map_y;
 	opdoor_ray->dir_x = ray->dir_x;
 	opdoor_ray->dir_y = ray->dir_y;
+	opdoor_ray->delta_x = ray->delta_x;
 	opdoor_ray->step_x = ray->step_x;
+	opdoor_ray->delta_y = ray->delta_y;
 	opdoor_ray->step_y = ray->step_y;
 	wall_height(game, opdoor_ray, &game->player);
 	new = ft_lstnew((void *)opdoor_ray);
@@ -46,6 +46,13 @@ void	wall_height(t_game *game, t_ray *ray, t_player *player)
 		ray->dist_w = (ray->side_x - ray->delta_x);
 	else
 		ray->dist_w = (ray->side_y - ray->delta_y);
+	// if (ft_strchr("CO", game->map.real_map[ray->map_y][ray->map_x]))
+	// {
+	// 	if (ray->side == 0)
+	// 		ray->dist_w = (ray->side_x - ray->delta_x / 2);
+	// 	else
+	// 		ray->dist_w = (ray->side_y - ray->delta_y / 2);
+	// }
 	ray->height = (int)(GAME_HEIGHT / ray->dist_w);
 	ray->start = -(ray->height) / 2 + GAME_HEIGHT / 2;
 	if (ray->start < 0)

@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 22:10:38 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/10 10:15:09 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ void	init_info(t_info *info)
 	info->fl_path = NULL;
 	info->c_color = NULL;
 	info->f_color = NULL;
-}
-
-void	init_ray(t_ray *ray)
-{
-	ray->camera_x = 0;
-	ray->dir_x = 0;
-	ray->dir_y = 0;
 }
 
 void	init_map(t_map *map)

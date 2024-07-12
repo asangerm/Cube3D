@@ -6,7 +6,7 @@
 #    By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/07/08 22:29:18 by nfradet          ###   ########.fr        #
+#    Updated: 2024/07/12 16:11:47 by nfradet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ DISPLAY		=	minimap.c			\
 INIT		=	init.c				\
 				init_2.c	
 KEYBOARD	=	keyboard.c			\
-				move.c
+				move.c				\
+				door_handler.c
 ENDING		=	ending.c	
 SRC			=	$(PARSING)			\
 				$(INIT)				\

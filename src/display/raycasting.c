@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/12 19:50:08 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:51:25 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_ray	*init_raycasting(int x, t_player *player)
 	ray->map_y = (int)player->y;
 	ray->delta_x = fabs(1 / ray->dir_x);
 	ray->delta_y = fabs(1 / ray->dir_y);
+	return (ray);
 }
 
 int	darken_color(int color, double weight)

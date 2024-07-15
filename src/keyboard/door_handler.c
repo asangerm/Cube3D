@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:07:18 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/12 16:16:56 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/15 03:30:17 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,8 @@ void	close_door_if(t_game *game)
 		{
 			if (map[x][y] == 'O')
 			{
-				if (map[(int)game->player.y][(int)game->player.x] != 'O' &&
-					map[(int)game->player.y + 1][(int)game->player.x] != 'O' &&
-					map[(int)game->player.y - 1][(int)game->player.x] != 'O' &&
-					map[(int)game->player.y][(int)game->player.x + 1] != 'O' &&
-					map[(int)game->player.y][(int)game->player.x - 1] != 'O')
+				if (sqrt(power(game->player.y - x + 0.5)
+						+ power(game->player.x - y + 0.5)) >= 2)
 					map[x][y] = 'C';
 			}
 			y++;

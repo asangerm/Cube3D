@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/12 16:23:14 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/15 03:31:14 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,11 +186,23 @@ typedef struct s_game
 	int			fps;
 }		t_game;
 
+void	check_door(t_game *game, t_ray *ray, int *hit);
+double	power(double n);
+
 /*-------------------- display --------------------*/
+
+/* door.c */
+t_ray	init_check(t_game *game, t_ray *ray);
+void	check_door(t_game *game, t_ray *ray, int *hit);
+void	x_check(t_game *game, t_ray *ray, int *hit, t_ray fake);
+void	check_y_1(t_game *game, t_ray *ray, int *hit, t_ray fake);
+void	check_y_2(t_game *game, t_ray *ray, int *hit, t_ray fake);
 
 /* draw_utils.c */
 int		get_sign(double nb);
+void	dark_circle(t_game *game);
 void	free_star(int **tab, int h);
+void	handle_textures(t_game *game, t_ray *ray, int x);
 void	set_pixel(t_image *image, int y, int x, int color);
 
 /* drawing.c */
@@ -225,14 +237,16 @@ void	draw_triangle_north(t_game *game, int x, int y, int colorp);
 void	draw_triangle_south(t_game *game, int x, int y, int colorp);
 
 /* raycasting.c */
-void	raycasting(t_game *game);
+void	raycasting(t_game *game, int x);
 void	dda(t_game *game, t_ray *ray);
 void	init_dda(t_ray *ray, t_player *player);
 t_ray	*init_raycasting(int x, t_player *player);
 
-
 /* raycasting_utils.c */
+double	power(double n);
 void	add_door_ray(t_game *game, t_ray *ray);
+int		darken_color(int color, double weight);
+void	open_close_check(t_game *game, t_ray *ray);
 void	wall_height(t_game *game, t_ray *ray, t_player *player);
 
 /*-------------------- ending --------------------*/
@@ -299,7 +313,7 @@ void	check_player(t_game *game, char **map);
 void	check_position(t_game *game, char **map);
 
 /* map.c */
-void	check_doors(t_game * game);
+void	check_doors(t_game *game);
 void	map_extractor(t_game *game);
 void	get_map(t_game *game, char **map, int i);
 void	set_map(t_game *game, t_map *m, char **map, int w);
@@ -329,7 +343,6 @@ void	get_textures(t_game *game, t_info *info, char *line, int j);
 void	create_suite(t_game *game);
 void	create_suite_suite(t_game *game);
 void	create_mlx_textures(t_game *game);
-void	handle_textures(t_game *game, t_ray *ray, int x);
 
 /*-------------------- player --------------------*/
 

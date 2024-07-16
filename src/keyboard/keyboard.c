@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:49:50 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/12 16:06:45 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/16 18:30:19 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	key_release(int keycode, t_game *game)
 
 int	key_hook(t_game *game)
 {
-	open_door(game);
+	op_or_close_door(game);
 	if (game->player.move_y == 1)
 		move_up(game);
 	if (game->player.move_y == -1)

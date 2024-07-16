@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:41:24 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/15 02:21:10 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:29:00 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_image(int **mini_map, t_game *game, int tile_size)
 		i++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win,
-		image.img, GAME_WIDTH / 2 - MINIMAP_SIZE * tile_size / 2, GAME_HEIGHT);
+		image.img, 0, GAME_HEIGHT);
 	mlx_destroy_image(game->mlx, image.img);
 }
 

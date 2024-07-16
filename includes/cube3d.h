@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/15 03:31:14 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:28:08 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,6 @@ typedef struct s_game
 	int			fps;
 }		t_game;
 
-void	check_door(t_game *game, t_ray *ray, int *hit);
 double	power(double n);
 
 /*-------------------- display --------------------*/
@@ -194,9 +193,8 @@ double	power(double n);
 /* door.c */
 t_ray	init_check(t_game *game, t_ray *ray);
 void	check_door(t_game *game, t_ray *ray, int *hit);
-void	x_check(t_game *game, t_ray *ray, int *hit, t_ray fake);
-void	check_y_1(t_game *game, t_ray *ray, int *hit, t_ray fake);
-void	check_y_2(t_game *game, t_ray *ray, int *hit, t_ray fake);
+void	check_x_side(t_game *game, t_ray *ray, t_ray *fake, int *hit);
+void	check_y_side(t_game *game, t_ray *ray, t_ray *fake, int *hit);
 
 /* draw_utils.c */
 int		get_sign(double nb);
@@ -274,8 +272,7 @@ void	init_player(t_player *player);
 /*-------------------- keyboard --------------------*/
 
 /* door_handler */
-void	open_door(t_game *game);
-void	close_door_if(t_game *game);
+void	op_or_close_door(t_game *game);
 
 /* keyboard.c */
 int		key_hook(t_game *game);

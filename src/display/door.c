@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   door_handler.c                                     :+:      :+:    :+:   */
+/*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 03:20:00 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/15 03:28:51 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:28:34 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,54 +39,36 @@ t_ray	init_check(t_game *game, t_ray *ray)
 	return (fake);
 }
 
-void	x_check(t_game *game, t_ray *ray, int *hit, t_ray fake)
+void	check_x_side(t_game *game, t_ray *ray, t_ray *fake, int *hit)
 {
-	if ((int)game->player.x < ray->map_x)
+	if (game->player.x < ray->map_x)
 	{
-		if (fake.wall_x <= 0.5)
+		if (fake->wall_x <= 0.5)
 			*hit = 0;
 		else
 			*hit = 1;
 	}
-	else if ((int)game->player.x > ray->map_x)
+	else if (game->player.x > ray->map_x)
 	{
-		if (fake.wall_x >= 0.5)
+		if (fake->wall_x >= 0.5)
 			*hit = 0;
 		else
 			*hit = 1;
 	}
 }
 
-void	check_y_1(t_game *game, t_ray *ray, int *hit, t_ray fake)
+void	check_y_side(t_game *game, t_ray *ray, t_ray *fake, int *hit)
 {
-	if ((int)game->player.x > ray->map_x)
+	if (game->player.y < ray->map_y)
 	{
-		if (fake.wall_x >= 0.5)
+		if (fake->wall_x <= 0.5)
 			*hit = 0;
 		else
 			*hit = 1;
 	}
-	else
+	else if (game->player.y > ray->map_y)
 	{
-		if (fake.wall_x <= 0.5)
-			*hit = 0;
-		else
-			*hit = 1;
-	}
-}
-
-void	check_y_2(t_game *game, t_ray *ray, int *hit, t_ray fake)
-{
-	if ((int)game->player.x < ray->map_x)
-	{
-		if (fake.wall_x <= 0.5)
-			*hit = 0;
-		else
-			*hit = 1;
-	}
-	else
-	{
-		if (fake.wall_x >= 0.5)
+		if (fake->wall_x >= 0.5)
 			*hit = 0;
 		else
 			*hit = 1;
@@ -100,12 +82,10 @@ void	check_door(t_game *game, t_ray *ray, int *hit)
 	fake = init_check(game, ray);
 	if (strchr("1", game->map.real_map[fake.map_y][fake.map_x]))
 	{
-		if ((int)game->player.y < ray->map_y)
-			check_y_1(game, ray, hit, fake);
-		else if ((int)game->player.y > ray->map_y)
-			check_y_2(game, ray, hit, fake);
+		if (ray->side == 0)
+			check_x_side(game, ray, &fake, hit);
 		else
-			x_check(game, ray, hit, fake);
+			check_y_side(game, ray, &fake, hit);
 	}
 	else
 		*hit = 1;

@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:24:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/15 03:27:32 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:22:53 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	draw(t_game *game)
 		i++;
 	}
 	raycasting(game, 0);
+	heart_hud(game);
 	free_star(game->tab_img, GAME_HEIGHT);
 	return (0);
 }

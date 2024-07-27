@@ -6,7 +6,7 @@
 /*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:18:48 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/02 14:52:01 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:26:15 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,25 @@ void	calculate_and_display_fps(t_game *game)
 	}
 	sprintf(fps_str, "FPS: %d", game->fps);
 	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, fps_str);
+}
+
+void	heart_hud(t_game *game)
+{
+	t_image	heart;
+	int		i;
+	int		start;
+	int		life;
+
+	start = MINIMAP_SIZE * TILE_SIZE + BORDER_SIZE * 2;
+	i = 0;
+	life = 8;
+	heart.img = mlx_xpm_file_to_image(game->mlx, HEART_PATH, &(heart.width),
+			&(heart.height));
+	while (i < life)
+	{
+		mlx_put_image_to_window(game->mlx, game->win, heart.img, start
+			+ i * (heart.width + 5) + 5, GAME_HEIGHT);
+		i++;
+	}
+	mlx_destroy_image(game->mlx, heart.img);
 }

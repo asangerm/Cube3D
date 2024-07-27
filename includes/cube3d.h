@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/16 18:28:08 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/27 13:23:38 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define WOL_CEIL 0x3b3b3b
 # define WOL_FLOOR 0x737373
 # define WOL_WALL 0x0000FF
+
+# define HEART_PATH "textures/heart_hud.xpm"
 
 # define RED "\033[0;31m"
 # define YELLOW	"\033[0;33m"
@@ -206,8 +208,8 @@ void	set_pixel(t_image *image, int y, int x, int color);
 /* drawing.c */
 int		draw(t_game *game);
 int		color_change(int *color);
-void	print_img_ray(int **text, t_game *game);
 void	draw_line(t_game *game, int x);
+void	print_img_ray(int **text, t_game *game);
 void	free_texture(t_game *game, t_textures *text);
 
 /* floor_ceil.c */
@@ -217,6 +219,7 @@ void	print_floor_ceiling(t_game *game, t_ray *ray, int y);
 void	init_floor_ceiling(int y, t_ray *ray, t_player *player);
 
 /* fps.c */
+void	heart_hud(t_game *game);
 double	get_time_in_seconds(void);
 void	calculate_and_display_fps(t_game *game);
 
@@ -235,8 +238,9 @@ void	draw_triangle_north(t_game *game, int x, int y, int colorp);
 void	draw_triangle_south(t_game *game, int x, int y, int colorp);
 
 /* raycasting.c */
-void	raycasting(t_game *game, int x);
+void	init_side_ray(t_ray *ray);
 void	dda(t_game *game, t_ray *ray);
+void	raycasting(t_game *game, int x);
 void	init_dda(t_ray *ray, t_player *player);
 t_ray	*init_raycasting(int x, t_player *player);
 

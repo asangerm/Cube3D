@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/16 18:04:40 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/07/27 12:56:48 by asangerm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-static void	init_side_ray(t_ray *ray)
+void	init_side_ray(t_ray *ray)
 {
 	if (ray->side_x < ray->side_y)
 	{

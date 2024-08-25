@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 23:31:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 17:39:24 by asangerm         ###   ########.fr       */
+/*   Created: 2024/08/24 18:44:24 by nfradet           #+#    #+#             */
+/*   Updated: 2024/08/24 18:45:54 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,19 @@ void	move_right(t_game *game)
 		game->player.x = next_x;
 }
 
-void	rotate(t_game *game)
+int	mouse_move(int x, int y, t_game *game)
 {
-	double		rot;
-	double		tmp;
-	t_player	*p;
+	int	mid_width;
 
-	if (game->player.rota == 0)
-		return ;
-	if (game->player.rota < 0)
-		rot = -MOVE_SPEED;
-	else if (game->player.rota > 0)
-		rot = MOVE_SPEED;
-	else
-		return ;
-	p = &(game->player);
-	tmp = p->dir_x;
-	p->dir_x = p->dir_x * cos(rot) - p->dir_y * sin(rot);
-	p->dir_y = tmp * sin(rot) + p->dir_y * cos(rot);
-	tmp = p->plane_x;
-	p->plane_x = p->plane_x * cos(rot) - p->plane_y * sin(rot);
-	p->plane_y = tmp * sin(rot) + p->plane_y * cos(rot);
+	mid_width = (GAME_WIDTH / 2);
+	(void) y;
+	if (x - mid_width == 0)
+		return (0);
+	if (x - mid_width < 0)
+		game->player.rota = -1;
+	else if (x - mid_width > 0)
+		game->player.rota = 1;
+	mlx_mouse_move(game->mlx, game->win, mid_width, GAME_HEIGHT / 2);
+	game->is_rota_stopping = 1;
+	return (0);
 }

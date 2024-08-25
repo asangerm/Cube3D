@@ -1,16 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_2.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/08 17:34:42 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/08 21:03:58 by nfradet          ###   ########.fr       */
+/*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
+/*   Updated: 2024/08/24 18:36:25 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	ft_error(t_game *game, char *str)
+{
+	printf("%s%s %s %s%s\n", RED, ERROR_EMOJI, ERROR_, ERROR_EMOJI, RESET);
+	printf("%s%s%s\n", YELLOW, str, RESET);
+	end(game);
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (tab != NULL)
+	{
+		while (tab[i])
+		{
+			free(tab[i]);
+			i++;
+		}
+		free(tab);
+	}
+}
+
+void	init_player(t_player *player)
+{
+	player->face_to = '0';
+	player->x = 0;
+	player->y = 0;
+	player->dir_x = 0;
+	player->dir_y = 0;
+	player->plane_x = 0;
+	player->plane_y = 0;
+	player->rota = 0;
+	player->move_x = 0;
+	player->move_y = 0;
+}
 
 void	init_text(t_game *game, int tile_size)
 {
@@ -36,33 +73,6 @@ void	init_text(t_game *game, int tile_size)
 		}
 		i++;
 	}
-}
-
-void	init_textures(t_game *game, t_ray *ray)
-{
-	if (game->map.real_map[ray->map_y][ray->map_x] == 'C')
-		ray->image = game->textures.cd;
-	if (game->map.real_map[ray->map_y][ray->map_x] == 'O')
-		ray->image = game->textures.od;
-	if (game->map.real_map[ray->map_y][ray->map_x] == '1')
-	{
-		if (ray->side == 0)
-		{
-			if (ray->dir_x <= 0)
-				ray->image = game->textures.ea;
-			else
-				ray->image = game->textures.we;
-		}
-		else
-		{
-			if (ray->dir_y <= 0)
-				ray->image = game->textures.so;
-			else
-				ray->image = game->textures.no;
-		}
-	}
-	ray->tex_x = (int)(ray->wall_x * (double)ray->image.width);
-	ray->step = 1.0 * ray->image.height / ray->height;
 }
 
 void	init_textures_game(t_image *img)

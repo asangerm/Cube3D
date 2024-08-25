@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/27 13:23:38 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/08/24 18:32:58 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,17 @@ typedef struct s_game
 
 double	power(double n);
 
-/*-------------------- display --------------------*/
+/* double declarations */
+void	end(t_game *game);
+int		draw(t_game *game);
+int		key_hook(t_game *game);
+
+/*-------------------- bonus --------------------*/
+
+/* door_handler.c */
+void	check_doors(t_game *game);
+void	op_or_close_door(t_game *game);
+int		check_corridor(t_game *game, int i, int j);
 
 /* door.c */
 t_ray	init_check(t_game *game, t_ray *ray);
@@ -198,9 +208,69 @@ void	check_door(t_game *game, t_ray *ray, int *hit);
 void	check_x_side(t_game *game, t_ray *ray, t_ray *fake, int *hit);
 void	check_y_side(t_game *game, t_ray *ray, t_ray *fake, int *hit);
 
+
+/* draw_bonus.c */
+void	dark_circle(t_game *game);
+
+/* ending_bonus */
+void	free_map_bonus(t_map *map);
+void	free_info_bonus(t_info *info);
+void	free_texture_bonus(t_game *game, t_textures *text);
+
+/* fps.c */
+void	heart_hud(t_game *game);
+double	get_time_in_seconds(void);
+void	calculate_and_display_fps(t_game *game);
+
+/* parsing_bonus.c */
+void	init_bonus(t_game *game);
+void	init_info_bonus(t_info *info);
+void	check_middle_bonus(t_game *game, int i, int j);
+void	check_center_bonus(t_game *game, char **map, int i, int j);
+void	check_char_bonus(t_game *game, char **map);
+void	map_checker_bonus(t_game *game);
+void	parsing_bonus(t_game *game, int argc, char **argv);
+
+/* raycasting_bonus.c */
+void	add_door_ray(t_game *game, t_ray *ray);
+int		darken_color(int color, double weight);
+void	open_close_check(t_game *game, t_ray *ray);
+void	dda_bonus(t_game *game, t_ray *ray);
+void	raycasting_bonus(t_game *game, int x);
+
+/* texture_bonus.c */
+void	init_textures_bonus(t_game *game, t_ray *ray);
+void	texture_checker_bonus(t_game *game);
+void	create_suite_suite_bonus(t_game *game);
+void	create_suite_bonus(t_game *game);
+void	create_mlx_textures_bonus(t_game *game);
+void	init_map_bonus(t_map *map);
+
+/*-------------------- mandatory --------------------*/
+
+/* ending.c */
+void	free_map(t_map *map);
+void	free_info(t_info *info);
+void	free_texture(t_game *game, t_textures *text);
+
+/* ending.c */
+/* ending.c */
+/* ending.c */
+/* ending.c */
+/* ending.c */
+/* ending.c */
+
+
+
+
+
+
+
+
+/*-------------------- display --------------------*/
+
 /* draw_utils.c */
 int		get_sign(double nb);
-void	dark_circle(t_game *game);
 void	free_star(int **tab, int h);
 void	handle_textures(t_game *game, t_ray *ray, int x);
 void	set_pixel(t_image *image, int y, int x, int color);
@@ -210,18 +280,12 @@ int		draw(t_game *game);
 int		color_change(int *color);
 void	draw_line(t_game *game, int x);
 void	print_img_ray(int **text, t_game *game);
-void	free_texture(t_game *game, t_textures *text);
 
 /* floor_ceil.c */
 void	floor_ceiling(t_game *game);
 void	init_floor_ceiling_texture(t_game *game, t_ray *ray);
 void	print_floor_ceiling(t_game *game, t_ray *ray, int y);
 void	init_floor_ceiling(int y, t_ray *ray, t_player *player);
-
-/* fps.c */
-void	heart_hud(t_game *game);
-double	get_time_in_seconds(void);
-void	calculate_and_display_fps(t_game *game);
 
 /* minimap.c */
 void	handle_outline(t_game *game);
@@ -246,18 +310,12 @@ t_ray	*init_raycasting(int x, t_player *player);
 
 /* raycasting_utils.c */
 double	power(double n);
-void	add_door_ray(t_game *game, t_ray *ray);
-int		darken_color(int color, double weight);
-void	open_close_check(t_game *game, t_ray *ray);
 void	wall_height(t_game *game, t_ray *ray, t_player *player);
 
 /*-------------------- ending --------------------*/
 
 /* ending.c */
-void	end(t_game *game);
 void	free_tab(char **tab);
-void	free_map(t_map *map);
-void	free_info(t_info *info);
 void	ft_error(t_game *game, char *str);
 
 /*-------------------- init --------------------*/
@@ -275,11 +333,7 @@ void	init_player(t_player *player);
 
 /*-------------------- keyboard --------------------*/
 
-/* door_handler */
-void	op_or_close_door(t_game *game);
-
 /* keyboard.c */
-int		key_hook(t_game *game);
 int		close_window(t_game *game);
 int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
@@ -314,7 +368,6 @@ void	check_player(t_game *game, char **map);
 void	check_position(t_game *game, char **map);
 
 /* map.c */
-void	check_doors(t_game *game);
 void	map_extractor(t_game *game);
 void	get_map(t_game *game, char **map, int i);
 void	set_map(t_game *game, t_map *m, char **map, int w);
@@ -342,7 +395,6 @@ void	get_textures(t_game *game, t_info *info, char *line, int j);
 
 /* textures_2.c */
 void	create_suite(t_game *game);
-void	create_suite_suite(t_game *game);
 void	create_mlx_textures(t_game *game);
 
 /*-------------------- player --------------------*/

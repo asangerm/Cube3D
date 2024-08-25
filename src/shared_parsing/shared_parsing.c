@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   shared_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:26:49 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/10 10:04:19 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/24 00:29:14 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,4 @@ void	get_data(t_game *game)
 			break ;
 		i++;
 	}
-}
-
-void	parsing(t_game *game, int argc, char **argv)
-{
-	arg_checker(game, argc, argv);
-	map_extractor(game);
-	get_data(game);
-	data_checker(game);
-	check_doors(game);
 }

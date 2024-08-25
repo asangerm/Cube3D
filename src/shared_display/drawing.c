@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asangerm <asangerm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:24:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/27 13:22:53 by asangerm         ###   ########.fr       */
+/*   Updated: 2024/08/25 00:35:54 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
-
-void	free_texture(t_game *game, t_textures *text)
-{
-	if (text->ea.img)
-		mlx_destroy_image(game->mlx, text->ea.img);
-	if (text->we.img)
-		mlx_destroy_image(game->mlx, text->we.img);
-	if (text->so.img)
-		mlx_destroy_image(game->mlx, text->so.img);
-	if (text->no.img)
-		mlx_destroy_image(game->mlx, text->no.img);
-	if (text->cd.img)
-		mlx_destroy_image(game->mlx, text->cd.img);
-	if (text->od.img)
-		mlx_destroy_image(game->mlx, text->od.img);
-	if (text->ceiling.img)
-		mlx_destroy_image(game->mlx, text->ceiling.img);
-	if (text->floor.img)
-		mlx_destroy_image(game->mlx, text->floor.img);
-}
 
 void	print_img_ray(int **tab_img, t_game *game)
 {
@@ -84,31 +64,17 @@ void	draw_line(t_game *game, int x)
 		cur_ray = (t_ray *)iter->content;
 		while (i < GAME_HEIGHT)
 		{
-			if (i >= cur_ray->start && i <= cur_ray->end)
+			if (i >= 0 && i < cur_ray->start)
+				game->tab_img[i][x] = color_change(game->map.map_info.c_color);
+			else if (i >= cur_ray->start && i <= cur_ray->end)
 			{
 				handle_textures(game, cur_ray, x);
 				i = cur_ray->end;
 			}
+			else if (i > cur_ray->end && i < GAME_HEIGHT)
+				game->tab_img[i][x] = color_change(game->map.map_info.f_color);
 			i++;
 		}
 		iter = iter->next;
 	}
-}
-
-int	draw(t_game *game)
-{
-	int	i;
-
-	game->tab_img = malloc((GAME_HEIGHT + 1) * sizeof(int *));
-	i = 0;
-	while (i < GAME_HEIGHT)
-	{
-		game->tab_img[i] = malloc((GAME_WIDTH + 1)
-				* sizeof(int));
-		i++;
-	}
-	raycasting(game, 0);
-	heart_hud(game);
-	free_star(game->tab_img, GAME_HEIGHT);
-	return (0);
 }

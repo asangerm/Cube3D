@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ending.c                                           :+:      :+:    :+:   */
+/*   ending_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/18 03:59:35 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/10 10:18:10 by nfradet          ###   ########.fr       */
+/*   Created: 2024/08/24 17:51:45 by nfradet           #+#    #+#             */
+/*   Updated: 2024/08/24 18:16:10 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	ft_error(t_game *game, char *str)
+void	free_texture_bonus(t_game *game, t_textures *text)
 {
-	printf("%s%s %s %s%s\n", RED, ERROR_EMOJI, ERROR_, ERROR_EMOJI, RESET);
-	printf("%s%s%s\n", YELLOW, str, RESET);
-	end(game);
+	if (text->ea.img)
+		mlx_destroy_image(game->mlx, text->ea.img);
+	if (text->we.img)
+		mlx_destroy_image(game->mlx, text->we.img);
+	if (text->so.img)
+		mlx_destroy_image(game->mlx, text->so.img);
+	if (text->no.img)
+		mlx_destroy_image(game->mlx, text->no.img);
+	if (text->cd.img)
+		mlx_destroy_image(game->mlx, text->cd.img);
+	if (text->od.img)
+		mlx_destroy_image(game->mlx, text->od.img);
+	if (text->ceiling.img)
+		mlx_destroy_image(game->mlx, text->ceiling.img);
+	if (text->floor.img)
+		mlx_destroy_image(game->mlx, text->floor.img);
 }
 
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (tab != NULL)
-	{
-		while (tab[i])
-		{
-			free(tab[i]);
-			i++;
-		}
-		free(tab);
-	}
-}
-
-void	free_info(t_info *info)
+void	free_info_bonus(t_info *info)
 {
 	if (info->no_path)
 		free(info->no_path);
@@ -59,17 +56,17 @@ void	free_info(t_info *info)
 		free(info->f_color);
 }
 
-void	free_map(t_map *map)
+void	free_map_bonus(t_map *map)
 {
 	free_tab(map->split_path);
 	free_tab(map->tab);
 	free_tab(map->real_map);
-	free_info(&map->map_info);
+	free_info_bonus(&map->map_info);
 }
 
 void	end(t_game *game)
 {
-	free_texture(game, &game->textures);
+	free_texture_bonus(game, &game->textures);
 	if (game->win != NULL)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx != NULL)
@@ -77,6 +74,6 @@ void	end(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	free_map(&game->map);
+	free_map_bonus(&game->map);
 	exit(0);
 }

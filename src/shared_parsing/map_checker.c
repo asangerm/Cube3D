@@ -6,39 +6,30 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 20:10:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/05 18:26:46 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/24 00:34:30 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	check_char(t_game *game, char **map)
+int	is_wspace(char c)
 {
-	int	i;
-	int	j;
+	if (c != ' ' && c != '\t' && c != '\r'
+		&& c != '\n' && c != '\v' && c != '\f')
+		return (0);
+	return (1);
+}
 
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\r'
-			|| map[i][j] == '\v' || map[i][j] == '\f')
-				j++;
-			if (map[i][j])
-			{
-				if (!(ft_strchr("10NSEWCO", map[i][j])))
-					ft_error(game, INVALID_MAP);
-				if (ft_strchr("NSEW", map[i][j]) && game->player.face_to != '0')
-					ft_error(game, INVALID_MAP);
-				if (ft_strchr("NSEW", map[i][j]) && game->player.face_to == '0')
-					game->player.face_to = map[i][j];
-				j++;
-			}
-		}
-		i++;
-	}
+void	check_border(t_game *game, char **map, int i, int j)
+{
+	if (i == 0)
+		ft_error(game, INVALID_MAP);
+	if (i == game->map.height - 1)
+		ft_error(game, INVALID_MAP);
+	if (j == 0)
+		ft_error(game, INVALID_MAP);
+	if (j == (int)ft_strlen(map[i]) - 1)
+		ft_error(game, INVALID_MAP);
 }
 
 void	check_position(t_game *game, char **map)
@@ -101,14 +92,3 @@ void	check_end(t_game *game)
 	}
 }
 
-void	map_checker(t_game *game)
-{
-	if (!game->map.real_map)
-		ft_error(game, INVALID_MAP);
-	if (game->map.height < 3)
-		ft_error(game, INVALID_MAP);
-	check_char(game, game->map.real_map);
-	check_player(game, game->map.real_map);
-	check_end(game);
-	check_middle(game, 0, 0);
-}

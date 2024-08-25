@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 16:07:18 by nfradet           #+#    #+#             */
-/*   Updated: 2024/07/16 18:27:38 by nfradet          ###   ########.fr       */
+/*   Created: 2024/08/19 20:35:20 by nfradet           #+#    #+#             */
+/*   Updated: 2024/08/24 18:12:14 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,53 @@ void	op_or_close_door(t_game *game)
 			y++;
 		}
 		x++;
+	}
+}
+
+int	check_corridor(t_game *game, int i, int j)
+{
+	char	**map;
+
+	map = game->map.real_map;
+	if (ft_strchr("10", map[i + 1][j]) == NULL)
+		return (0);
+	if (ft_strchr("10", map[i - 1][j]) == NULL)
+		return (0);
+	if (ft_strchr("10", map[i][j + 1]) == NULL)
+		return (0);
+	if (ft_strchr("10", map[i][j - 1]) == NULL)
+		return (0);
+	if (map[i][j + 1] == map[i + 1][j])
+		return (0);
+	if (map[i][j - 1] == map[i + 1][j])
+		return (0);
+	if (map[i][j + 1] == map[i - 1][j])
+		return (0);
+	if (map[i][j - 1] == map[i - 1][j])
+		return (0);
+	return (1);
+}
+
+void	check_doors(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map.real_map[i])
+	{
+		j = 0;
+		while (game->map.real_map[i][j] != '\0')
+		{
+			if (game->map.real_map[i][j] == 'O')
+				game->map.real_map[i][j] = 'C';
+			if (game->map.real_map[i][j] == 'C')
+			{
+				if (check_corridor(game, i, j) == 0)
+					ft_error(game, INVALID_DOOR);
+			}
+			j++;
+		}
+		i++;
 	}
 }

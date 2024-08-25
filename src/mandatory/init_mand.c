@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_mand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/18 17:57:54 by asangerm          #+#    #+#             */
-/*   Updated: 2024/07/10 10:15:09 by nfradet          ###   ########.fr       */
+/*   Created: 2024/08/24 00:24:40 by nfradet           #+#    #+#             */
+/*   Updated: 2024/08/24 17:58:32 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ void	init_info(t_info *info)
 	info->so_path = NULL;
 	info->we_path = NULL;
 	info->ea_path = NULL;
-	info->cd_path = NULL;
-	info->od_path = NULL;
-	info->ce_path = NULL;
-	info->fl_path = NULL;
 	info->c_color = NULL;
 	info->f_color = NULL;
 }
@@ -39,26 +35,8 @@ void	init_map(t_map *map)
 	init_info(&map->map_info);
 }
 
-void	init_player(t_player *player)
-{
-	player->face_to = '0';
-	player->x = 0;
-	player->y = 0;
-	player->dir_x = 0;
-	player->dir_y = 0;
-	player->plane_x = 0;
-	player->plane_y = 0;
-	player->rota = 0;
-	player->move_x = 0;
-	player->move_y = 0;
-}
-
 void	init(t_game *game)
 {
-	game->current_time = 0.0;
-	game->fps = 0;
-	game->frame_count = 0;
-	game->current_time = 0.0;
 	game->ms_rota = 0.03;
 	game->is_rota_stopping = 1;
 	game->lst_ray = NULL;
@@ -70,8 +48,27 @@ void	init(t_game *game)
 	init_textures_game(&game->textures.no);
 	init_textures_game(&game->textures.ea);
 	init_textures_game(&game->textures.we);
-	init_textures_game(&game->textures.cd);
-	init_textures_game(&game->textures.od);
-	init_textures_game(&game->textures.ceiling);
-	init_textures_game(&game->textures.floor);
+}
+
+void	init_textures(t_game *game, t_ray *ray)
+{
+	if (game->map.real_map[ray->map_y][ray->map_x] == '1')
+	{
+		if (ray->side == 0)
+		{
+			if (ray->dir_x <= 0)
+				ray->image = game->textures.ea;
+			else
+				ray->image = game->textures.we;
+		}
+		else
+		{
+			if (ray->dir_y <= 0)
+				ray->image = game->textures.so;
+			else
+				ray->image = game->textures.no;
+		}
+	}
+	ray->tex_x = (int)(ray->wall_x * (double)ray->image.width);
+	ray->step = 1.0 * ray->image.height / ray->height;
 }

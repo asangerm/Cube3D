@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:30:03 by asangerm          #+#    #+#             */
-/*   Updated: 2024/08/24 00:50:53 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/25 18:59:55 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	init_side_ray(t_ray *ray)
 		ray->side = 1;
 	}
 }
-
 
 void	init_dda(t_ray *ray, t_player *player)
 {

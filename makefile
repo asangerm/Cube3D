@@ -6,7 +6,7 @@
 #    By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/08/24 18:48:26 by nfradet          ###   ########.fr        #
+#    Updated: 2024/08/25 19:12:26 by nfradet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,8 @@ SHARED_PARSING	=		shared_parsing.c	\
 						map.c				\
 						map_checker.c		\
 						colors.c			\
-						textures.c			\
-						shared_endinit.c	\
-						textures_2.c
+						shared_textures.c	\
+						shared_endinit.c
 SHARED_DISPLAY	=		minimap.c			\
 						draw_utils.c		\
 						floor_ceil.c		\
@@ -53,6 +52,7 @@ MANDATORY		=		ending.c			\
 						move.c				\
 						main.c				\
 						parsing.c			\
+						texture.c			\
 						draw.c			\
 						raycasting.c		
 SRC				=		$(SHARED_PARSING)			\

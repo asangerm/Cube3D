@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:47:39 by nfradet           #+#    #+#             */
-/*   Updated: 2024/08/25 02:18:39 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:01:36 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ void	dark_circle(t_game *game)
 		}
 		i++;
 	}
+}
+
+int	darken_color(int color, double weight)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (int)(((color >> 16) & 0xFF) * weight);
+	g = (int)(((color >> 8) & 0xFF) * weight);
+	b = (int)((color & 0xFF) * weight);
+	if (r > 255)
+		r = 255;
+	if (g > 255)
+		g = 255;
+	if (b > 255)
+		b = 255;
+	return ((r << 16) | (g << 8) | b);
 }
 
 int	draw(t_game *game)

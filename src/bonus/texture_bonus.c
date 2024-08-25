@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:10:23 by nfradet           #+#    #+#             */
-/*   Updated: 2024/08/24 18:10:55 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:03:10 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,31 +133,4 @@ void	create_mlx_textures_bonus(t_game *game)
 	if (game->textures.cd.img == NULL)
 		ft_error(game, LOADING_TEX);
 	create_suite_bonus(game);
-}
-
-void	init_textures_bonus(t_game *game, t_ray *ray)
-{
-	if (game->map.real_map[ray->map_y][ray->map_x] == 'C')
-		ray->image = game->textures.cd;
-	if (game->map.real_map[ray->map_y][ray->map_x] == 'O')
-		ray->image = game->textures.od;
-	if (game->map.real_map[ray->map_y][ray->map_x] == '1')
-	{
-		if (ray->side == 0)
-		{
-			if (ray->dir_x <= 0)
-				ray->image = game->textures.ea;
-			else
-				ray->image = game->textures.we;
-		}
-		else
-		{
-			if (ray->dir_y <= 0)
-				ray->image = game->textures.so;
-			else
-				ray->image = game->textures.no;
-		}
-	}
-	ray->tex_x = (int)(ray->wall_x * (double)ray->image.width);
-	ray->step = 1.0 * ray->image.height / ray->height;
 }

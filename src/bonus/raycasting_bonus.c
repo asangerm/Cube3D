@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:48:45 by nfradet           #+#    #+#             */
-/*   Updated: 2024/08/24 17:52:39 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:01:29 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,6 @@ void	add_door_ray(t_game *game, t_ray *ray)
 	wall_height(game, opdoor_ray, &game->player);
 	new = ft_lstnew((void *)opdoor_ray);
 	ft_lstadd_front(&game->lst_ray, new);
-}
-
-int	darken_color(int color, double weight)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = (int)(((color >> 16) & 0xFF) * weight);
-	g = (int)(((color >> 8) & 0xFF) * weight);
-	b = (int)((color & 0xFF) * weight);
-	if (r > 255)
-		r = 255;
-	if (g > 255)
-		g = 255;
-	if (b > 255)
-		b = 255;
-	return ((r << 16) | (g << 8) | b);
 }
 
 void	open_close_check(t_game *game, t_ray *ray)

@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:24:34 by asangerm          #+#    #+#             */
-/*   Updated: 2024/08/25 02:18:08 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:00:07 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ int	color_change(int *color)
 	res = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 	return (res);
 }
-

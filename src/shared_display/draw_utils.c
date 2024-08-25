@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:08:46 by asangerm          #+#    #+#             */
-/*   Updated: 2024/08/24 00:49:43 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:00:24 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,3 @@ void	handle_textures(t_game *game, t_ray *ray, int x)
 		y++;
 	}
 }
-

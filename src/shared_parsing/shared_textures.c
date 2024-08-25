@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   shared_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 04:38:33 by asangerm          #+#    #+#             */
-/*   Updated: 2024/08/24 00:23:13 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:11:10 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	*get_path(char *line, int j)
 	return (path);
 }
 
-
 void	check_path(t_game *game, char *path)
 {
 	char	**split_path;
@@ -66,4 +65,3 @@ void	check_path(t_game *game, char *path)
 	free_tab(split_path);
 	close(fd);
 }
-

@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 03:59:35 by asangerm          #+#    #+#             */
-/*   Updated: 2024/08/24 18:03:29 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/25 18:56:32 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	free_info(t_info *info)
 		free(info->so_path);
 	if (info->we_path)
 		free(info->we_path);
+	if (info->ea_path)
+		free(info->ea_path);
 	if (info->c_color)
 		free(info->c_color);
 	if (info->f_color)

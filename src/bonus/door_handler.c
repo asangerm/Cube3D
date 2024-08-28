@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 20:35:20 by nfradet           #+#    #+#             */
-/*   Updated: 2024/08/24 18:12:14 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/28 19:12:31 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	check_corridor(t_game *game, int i, int j)
 	char	**map;
 
 	map = game->map.real_map;
-	if (ft_strchr("10", map[i + 1][j]) == NULL)
+	if (ft_strchr("10CO", map[i + 1][j]) == NULL)
 		return (0);
-	if (ft_strchr("10", map[i - 1][j]) == NULL)
+	if (ft_strchr("10CO", map[i - 1][j]) == NULL)
 		return (0);
-	if (ft_strchr("10", map[i][j + 1]) == NULL)
+	if (ft_strchr("10CO", map[i][j + 1]) == NULL)
 		return (0);
-	if (ft_strchr("10", map[i][j - 1]) == NULL)
+	if (ft_strchr("10CO", map[i][j - 1]) == NULL)
 		return (0);
 	if (map[i][j + 1] == map[i + 1][j])
 		return (0);

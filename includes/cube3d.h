@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 02:28:22 by asangerm          #+#    #+#             */
-/*   Updated: 2024/08/24 18:32:58 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/28 17:32:29 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@
 # define ERROR_EMOJI "\U000026D4"
 
 # define WINDOW_NAME "Cube 3D"
-# define GAME_WIDTH 640
-# define GAME_HEIGHT 480
+# define GAME_WIDTH 840
+# define GAME_HEIGHT 680
 # define MINIMAP_SIZE 7
 # define TILE_SIZE 20
 # define BORDER_SIZE 2
 
-# define MOVE_SPEED 0.02
+# define MOVE_SPEED 0.04
 
 # define K_UP 119
 # define K_DOWN 115
@@ -54,13 +54,14 @@
 # define ERROR_ "ERROR"
 # define TOO_FEW_ARG "Too few arguments!"
 # define TOO_MUCH_ARG "Too much arguments!"
-# define WRONG_EXT "Extension of file is incorrect"
-# define CANT_OPEN "We can't open the given file"
+# define WRONG_EXT "File extension is incorrect"
+# define CANT_OPEN "Can't open the given file"
 # define LOADING_TEX "Error while loading texture"
 # define INVALID_TEXT "Invalid texture in file "
 # define INVALID_COLOR "Invalid color in file"
 # define INVALID_MAP "Invalid map in file"
 # define INVALID_DOOR "Door not correctly placed"
+# define PLAYER_POS "Player position is invalid"
 
 typedef struct s_info
 {

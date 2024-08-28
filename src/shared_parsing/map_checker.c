@@ -6,7 +6,7 @@
 /*   By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 20:10:13 by asangerm          #+#    #+#             */
-/*   Updated: 2024/08/25 19:11:28 by nfradet          ###   ########.fr       */
+/*   Updated: 2024/08/28 19:20:58 by nfradet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ void	check_position(t_game *game, char **map)
 
 	i = game->player.y;
 	j = game->player.x;
-	if ((int)ft_strlen(map[i - 1]) < j || (int)ft_strlen(map[i + 1]) < j
+	if (i == 0 || j == 0 || \
+		(int)ft_strlen(map[i - 1]) < j || (int)ft_strlen(map[i + 1]) < j
 		|| is_wspace(map[i][j - 1]) || is_wspace(map[i][j + 1])
 		|| is_wspace(map[i - 1][j]) || is_wspace(map[i + 1][j]))
-		ft_error(game, INVALID_MAP);
+		ft_error(game, PLAYER_POS);
 }
 
 void	check_player(t_game *game, char **map)
@@ -51,7 +52,7 @@ void	check_player(t_game *game, char **map)
 	int	j;
 
 	if (game->player.face_to == '0')
-		ft_error(game, INVALID_MAP);
+		ft_error(game, PLAYER_POS);
 	i = 0;
 	while (map[i])
 	{

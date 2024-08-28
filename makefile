@@ -6,14 +6,14 @@
 #    By: nfradet <nfradet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 02:16:14 by asangerm          #+#    #+#              #
-#    Updated: 2024/08/25 19:12:26 by nfradet          ###   ########.fr        #
+#    Updated: 2024/08/28 16:37:14 by nfradet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Name of the program
-NAME		=	cub3d
+NAME		=	cub3D
 
-BONUS_NAME	=	cub3d_bonus
+BONUS_NAME	=	cub3D_bonus
 
 # Flags
 CC			=	gcc
